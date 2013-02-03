@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<script type="text/javascript" src="js/mootools-core-1.4.5-full-nocompat-yc.js"></script>
+	<script type="text/javascript" src="js/Parallaximus.js"></script>
+
+	<style type="text/css">
+		.w-parallaximus {
+			position: relative;
+			overflow: hidden;
+			background-color: #AEBCC9;
+			height: 300px;
+			width: 768px;
+			margin: 0 auto;
+			border-radius: 10px;
+			}
+			.w-parallaximus-layer {
+				position: absolute;
+				/*outline: 1px red solid;*/
+				}
+	</style>
+
+</head>
+<body>
+
+<h1>1. Normal parallaximus</h1>
+
+<div class="w-parallaximus i-autoinit" style="width: 768px; height: 300px">
+	<div class="w-parallaximus-layer index_1" style="width: 860px; height: 273px;">
+		<img src="img/0_sun.png" style="position:absolute; left:300px; top:-12px;" width="80" height="79" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_2" style="width: 920px; height: 274px;">
+		<img src="img/1_mountains.png" width="920" height="220" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_3" style="width: 1100px; height: 284px;">
+		<img src="img/2_hill.png" style="position:absolute; top:40px; left:0;" width="1100" height="287" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_4" style="width: 1360px; height: 320px;">
+		<img src="img/3_wood.png" style="position:absolute; top:96px; left:0;" width="1360" height="288" alt="">
+	</div>
+</div>
+
+<h1>2. Fixed width and height</h1>
+
+<div class="w-parallaximus width_fixed height_fixed i-autoinit" style="width: 768px; height: 300px">
+	<div class="w-parallaximus-layer index_1" style="width: 860px; height: 273px;">
+		<img src="img/0_sun.png" style="position:absolute; left:300px; top:-12px;" width="80" height="79" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_2" style="width: 920px; height: 274px;">
+		<img src="img/1_mountains.png" width="920" height="220" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_3" style="width: 1100px; height: 284px;">
+		<img src="img/2_hill.png" style="position:absolute; top:40px; left:0;" width="1100" height="287" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_4" style="width: 1360px; height: 320px;">
+		<img src="img/3_wood.png" style="position:absolute; top:96px; left:0;" width="1360" height="288" alt="">
+	</div>
+</div>
+
+<h1>3. Resize width with fixed height</h1>
+
+<div class="w-parallaximus height_fixed i-autoinit" style="width: 768px; height: 300px">
+	<div class="w-parallaximus-layer index_1" style="width: 860px; height: 273px;">
+		<img src="tmp/1.png" width="50" height="400" style="position:absolute; left:300px; top:-12px;" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_2" style="width: 920px; height: 274px;">
+		<img src="tmp/2.png" width="50" height="400" style="position:absolute; left:670px" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_3" style="width: 1100px; height: 284px;">
+		<img src="tmp/3.png" width="50" height="400" style="position:absolute; left:228px; top:40px;" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_4" style="width: 1360px; height: 320px;">
+		<img src="tmp/4.png" width="50" height="400" style="position:absolute; left:735px; top:-96px;" alt="">
+	</div>
+</div>
+
+<h1>4. Vertical banner with 3d transform</h1>
+
+<div class="w-parallaximus width_fixed height_fixed transform_3d i-autoinit" style="width: 240px; height: 400px; background: url(tmp/4-banner/4-bg.jpg)"
+		onclick="return {perspective: 10}">
+	<div class="w-parallaximus-layer index_1" style="width: 286px; height: 464px;">
+		<img src="tmp/4-banner/3-product.png" width="286" height="464" style="position:absolute; left:0px; top:0px;" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_2" style="width: 332px; height: 528px;">
+		<img src="tmp/4-banner/2-text.png" width="332" height="528" style="position:absolute; left:0px; top:0px;" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_3" style="width: 378px; height: 592px;">
+		<img src="tmp/4-banner/1-label.png" width="378" height="592" style="position:absolute; left:0px; top:0px;" alt="">
+	</div>
+	<div class="w-parallaximus-layer index_4" style="width: 424px; height: 656px;">
+		<img src="tmp/4-banner/0-price.png" width="424" height="656" style="position:absolute; left:0px; top:0px;" alt="">
+	</div>
+</div>
+
+<div id="debugz">!!</div>
+
+</body>
+</html>
