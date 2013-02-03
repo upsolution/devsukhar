@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Parallaximus Example #1</title>
+
+	<style type="text/css">
+		/*
+		 ********** Common parallaximus styles ***********/
+		.w-parallaximus {
+			position: relative;
+			overflow: hidden;
+			}
+			.w-parallaximus-layer {
+				position: absolute;
+				}
+				.w-parallaximus-layer > img {
+					position: absolute;
+					}
+
+		/*
+		 *********** Current example styles **************/
+		.w-parallaximus {
+			width: 240px;
+			height: 400px;
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+			background: url(img/0-background.jpg);
+			}
+			.w-parallaximus-layer.index_1 {
+				width: 250px;
+				height: 410px;
+				}
+				.w-parallaximus-layer.index_1 > img {
+					left: 20px;
+					top: 100px;
+					}
+			.w-parallaximus-layer.index_2 {
+				width: 260px;
+				height: 420px;
+				}
+				.w-parallaximus-layer.index_2 > img {
+					left: 95px;
+					top: 350px;
+					}
+			.w-parallaximus-layer.index_3 {
+				width: 270px;
+				height: 430px;
+				}
+				.w-parallaximus-layer.index_3 > img {
+					left: 30px;
+					top: 55px;
+					}
+			.w-parallaximus-layer.index_4 {
+				width: 280px;
+				height: 440px;
+				}
+				.w-parallaximus-layer.index_4 > img {
+					left: 125px;
+					top: 225px;
+					}
+	</style>
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script type="text/javascript" src="../../js/Parallaximus.MooTools.js"></script>
+
+
+</head>
+<body>
+
+	<div class="w-parallaximus width_fixed height_fixed i-autoinit" onclick="return {perspective: 75, duration: 5000}">
+		<div class="w-parallaximus-layer index_1">
+			<img src="img/1-product.png" width="165" height="219" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_2">
+			<img src="img/2-text.png" width="130" height="42" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_3">
+			<img src="img/3-title.png" width="182" height="28" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_4">
+			<img src="img/4-price.png" width="120" height="120" alt="">
+		</div>
+	</div>
+
+</body>
+</html>

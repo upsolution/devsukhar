@@ -42,7 +42,7 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Number} Return to base point duration
 		 */
-		duration: 5000,
+		duration: 2000,
 
 		/**
 		 * @var {Function} Returning transition
@@ -74,46 +74,48 @@ var Parallaximus = new Class({
 			this.cssPrefix = this._get3DPrefix();
 			if (this.cssPrefix === false) this.options.use3d = false;
 		}
-		this.container.addEvents({
-			mousemove: function(e){
-				var pos = this.container.getPosition(),
-					now = Date.now();
-				if (this._lastFrame + this._frameRate > now) return;
-				this.stop().set([(e.page.x - pos.x) / this.curCntSz.x, (e.page.y - pos.y) / this.curCntSz.y]);
-				this._lastFrame = now;
-			}.bind(this),
-			mouseover: function(e){},
-			mouseout: function(e){
-				this.start(this.options.basePoint.clone());
-			}.bind(this),
-			// Adding touchstart event to prevent mousemove events on touch devices
-			// @link http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/HandlingEvents/HandlingEvents.html
-			touchstart: function(e){}
-		});
-		// Ipad orientation controls
-		if ('DeviceOrientationEvent' in window) window.addEventListener(
-			"deviceorientation",
-			function(e){
-				// Prevent browser overload
-				var gamma = Math.max(-45, Math.min(45, e.gamma)),
-					beta = Math.max(-45, Math.min(45, e.beta)),
-					x = (45 - gamma) / 90,
-					y = (45 - beta) / 90;
-				this.stop().set([x, y]);
-			}.bind(this)
-		);
 		// Count frame rate
 		this._frameRate = Math.round(1000 / this.options.fps);
-		this.set([.5, .5]);
+		// Mouse events for desktops
+		if (!('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
+			this.container.addEvents({
+				mousemove: function(e){
+					var pos = this.container.getPosition(),
+						now = Date.now();
+					// Reducing processor load for too frequent event calls
+					if (this._lastFrame + this._frameRate > now) return;
+					this.stop().set([(e.page.x - pos.x) / this.curCntSz.x, (e.page.y - pos.y) / this.curCntSz.y]);
+					this._lastFrame = now;
+				}.bind(this),
+				mouseout: function(e){
+					this.start(this.options.basePoint.clone());
+				}.bind(this)
+			});
+		}
+		// Device orientation events for touch devices
+		if ('ontouchstart' in window && 'DeviceOrientationEvent' in window){
+			window.addEventListener(
+				"deviceorientation",
+				function(e){
+					// Prevent browser overload
+					var gamma = Math.max(-45, Math.min(45, e.gamma)),
+						beta = Math.max(-45, Math.min(45, e.beta)),
+						x = (45 - gamma) / 90,
+						y = (45 - beta) / 90;
+					this.stop().set([x, y]);
+				}.bind(this)
+			);
+		}
+		this.set(this.options.basePoint);
 		this._lastFrame = Date.now();
 	},
 
 	/**
-	 * Check if browser supports css3 3d transforms and return browser css3 prefix
+	 * Obtain browser css3 prefix or false if 3d transforms are not supported
 	 * Based on modernizer
 	 * @link http://modernizr.com
 	 * @private
-	 * @return {String} Prefix or false if not supported
+	 * @return {String} Prefix or false
 	 */
 	_get3DPrefix: function() {
 		var div = document.createElement('div'),
@@ -187,7 +189,6 @@ var Parallaximus = new Class({
 			}
 		}, this);
 		this.now = coord.clone();
-//		this._lastFrame = now;
 		return this;
 	},
 
