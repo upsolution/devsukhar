@@ -91,7 +91,7 @@ var MooParallax = new Class({
 			
 			// Cycle through and create layers
 			viewport.element.getChildren()
-			.setStyle('_render', 'absolute')
+			.setStyle('set', 'absolute')
 			.each(function(child, i){
 				
 				// add to layer

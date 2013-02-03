@@ -1,6 +1,6 @@
 var Parallaximus = new Class({
 
-	Implements: [Options, Events],
+	Extends: Fx,
 
 	options: {
 
@@ -12,7 +12,7 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Number} Frame per second limit for rendering
 		 */
-		fpsLimit: 30,
+		fps: 30,
 
 		/**
 		 * @var {Boolean} Enable 3d transformations
@@ -35,6 +35,16 @@ var Parallaximus = new Class({
 		angleYRange: 10,
 
 		/**
+		 * @var {Number} Point for basic position (after the cursor moves out of the container)
+		 */
+		basePoint: [.5, .5],
+
+		/**
+		 * @var {Number} Return to base point duration
+		 */
+		duration: 5000,
+
+		/**
 		 * @var {Function} Returning transition
 		 */
 		transition: Fx.Transitions.Elastic.easeOut
@@ -48,7 +58,7 @@ var Parallaximus = new Class({
 	initialize: function(container, options)
 	{
 		// Apply options
-		this.setOptions(options);
+		this.parent(options);
 		this.container = document.id(container);
 		this.layers = this.container.getChildren();
 		// Basic container / layers sizes
@@ -66,8 +76,15 @@ var Parallaximus = new Class({
 		}
 		this.container.addEvents({
 			mousemove: function(e){
-				var pos = this.container.getPosition();
-				this._render((e.page.x - pos.x) / this.curCntSz.x, (e.page.y - pos.y) / this.curCntSz.y, true);
+				var pos = this.container.getPosition(),
+					now = Date.now();
+				if (this._lastFrame + this._frameRate > now) return;
+				this.stop().set([(e.page.x - pos.x) / this.curCntSz.x, (e.page.y - pos.y) / this.curCntSz.y]);
+				this._lastFrame = now;
+			}.bind(this),
+			mouseover: function(e){},
+			mouseout: function(e){
+				this.start(this.options.basePoint.clone());
 			}.bind(this),
 			// Adding touchstart event to prevent mousemove events on touch devices
 			// @link http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/HandlingEvents/HandlingEvents.html
@@ -82,12 +99,12 @@ var Parallaximus = new Class({
 					beta = Math.max(-45, Math.min(45, e.beta)),
 					x = (45 - gamma) / 90,
 					y = (45 - beta) / 90;
-				this._render(x, y, true);
+				this.stop().set([x, y]);
 			}.bind(this)
 		);
 		// Count frame rate
-		this._frameRate = Math.round(1000 / this.options.fpsLimit);
-		this._render(.5, .5, false);
+		this._frameRate = Math.round(1000 / this.options.fps);
+		this.set([.5, .5]);
 		this._lastFrame = Date.now();
 	},
 
@@ -153,27 +170,36 @@ var Parallaximus = new Class({
 
 	/**
 	 * Render parallaximus frame.
-	 * @param {Number} x Ranged in [0, 1]
-	 * @param {Number} y Ranged in [0, 1]
-	 * @param {Boolean} limitFps Prevent too frequent render on events to reduce processor overload
+	 * @param {Array} coord [x, y] Both x and y are ranged in [0, 1]
 	 */
-	_render: function(x, y, limitFps)
+	set: function(coord)
 	{
-		var now = Date.now();
-		if (limitFps && this._lastFrame + this._frameRate > now) return;
 		Array.each(this.layers, function(layer, index){
 			layer
-				.setStyle('left', this.layerMin[index].x + this.layerRatio[index].x * x)
-				.setStyle('top', this.layerMin[index].y + this.layerRatio[index].y * y);
+				.setStyle('left', this.layerMin[index].x + this.layerRatio[index].x * coord[0])
+				.setStyle('top', this.layerMin[index].y + this.layerRatio[index].y * coord[1]);
 			if (this.options.use3d){
 				layer.setStyle(this.cssPrefix+'transform',
 					'perspective('+this.options.perspective+'px) ' +
-					'rotateX('+(this.layerAngle[index].y*(y-.5))+'deg) ' +
-					'rotateY('+(this.layerAngle[index].x*(x-.5))+'deg)'
+					'rotateX('+(this.layerAngle[index].y*(coord[1]-.5))+'deg) ' +
+					'rotateY('+(this.layerAngle[index].x*(coord[0]-.5))+'deg)'
 				);
 			}
 		}, this);
-		this._lastFrame = now;
+		this.now = coord.clone();
+//		this._lastFrame = now;
+		return this;
+	},
+
+	compute: function(from, to, delta)
+	{
+		return [(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]];
+	},
+
+	start: function(to)
+	{
+		this.parent(this.now, to);
+		return this;
 	}
 
 });
@@ -188,6 +214,6 @@ window.addEvent('domready', function(){
 			options = widget.onclick() || {};
 			widget.erase('onclick');
 		}
-		new Parallaximus(widget, options);
+		window.pr = new Parallaximus(widget, options);
 	});
 });
