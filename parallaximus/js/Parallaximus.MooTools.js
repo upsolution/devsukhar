@@ -76,7 +76,7 @@ var Parallaximus = new Class({
 		}
 		// Count frame rate
 		this._frameRate = Math.round(1000 / this.options.fps);
-		// Mouse events for desktops
+		// Mouse events for desktop browsers
 		if (!('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
 			this.container.addEvents({
 				mousemove: function(e){
@@ -97,11 +97,32 @@ var Parallaximus = new Class({
 			window.addEventListener(
 				"deviceorientation",
 				function(e){
-					// Prevent browser overload
+					// todo Prevent browser overload?
 					var gamma = Math.max(-45, Math.min(45, e.gamma)),
 						beta = Math.max(-45, Math.min(45, e.beta)),
-						x = (45 - gamma) / 90,
-						y = (45 - beta) / 90;
+						x, y;
+					switch (window.orientation){
+						case -90:
+							x = (beta + 45) / 90;
+							y = (45 - gamma) / 90;
+							break;
+						case 0:
+							x = (45 - gamma) / 90;
+							y = (45 - beta) / 90;
+							break;
+						case 90:
+							x = (beta + 45) / 90;
+							y = (gamma - 45) / 90;
+							break;
+						case 180:
+						default:
+							x = (gamma + 45) / 90;
+							y = (beta + 45) / 90;
+							break;
+					}
+
+//					document.getElement('#debug').set('text', window.orientation + ' '
+//						+ Math.round(beta*100)/100 + ' ' + Math.round(gamma*100)/100 + ' ' + Math.round(x*100)/100 + ' ' + Math.round(y*100)/100);
 					this.stop().set([x, y]);
 				}.bind(this)
 			);
