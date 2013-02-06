@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Parallaximus Example #3</title>
+
+	<style type="text/css">
+		/*
+		 ********** Common parallaximus styles ***********/
+		.w-parallaximus {
+			position: relative;
+			overflow: hidden;
+			}
+			.w-parallaximus-layer {
+				position: absolute;
+				}
+				.w-parallaximus-layer > img {
+					position: absolute;
+					}
+
+		/*
+		 *********** Current example styles **************/
+		.w-parallaximus {
+			width: 240px;
+			height: 400px;
+			background: url(img/0-background.jpg);
+			}
+			.w-parallaximus-layer.index_1 {
+				width: 250px;
+				height: 410px;
+				}
+				.w-parallaximus-layer.index_1 > img {
+					left: 128px;
+					top: 65px;
+					}
+			.w-parallaximus-layer.index_2 {
+				width: 260px;
+				height: 420px;
+				}
+				.w-parallaximus-layer.index_2 > img {
+					left: -10px;
+					top: 0px;
+					}
+			.w-parallaximus-layer.index_3 {
+				width: 270px;
+				height: 430px;
+				}
+				.w-parallaximus-layer.index_3 > img {
+					left: 58px;
+					top: 231px;
+					}
+			.w-parallaximus-layer.index_4 {
+				width: 280px;
+				height: 440px;
+				}
+				.w-parallaximus-layer.index_4 > img {
+					left: 0px;
+					bottom: -10px;
+					}
+	</style>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script type="text/javascript" src="../../js/Parallaximus.MooTools.js"></script>
+
+
+</head>
+<body>
+
+	<div class="w-parallaximus width_fixed height_fixed i-autoinit" onclick="return {perspective: 150, duration: 5000}">
+		<div class="w-parallaximus-layer index_1">
+			<img src="img/1-righttree.png" width="137" height="219" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_2">
+			<img src="img/2-lefttree.png" width="163" height="350" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_3">
+			<img src="img/3-title.png" width="158" height="83" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_4">
+			<img src="img/4-bushes.png" width="280" height="174" alt="">
+		</div>
+	</div>
+
+	<!--<div id="debug"></div>-->
+
+</body>
+</html>

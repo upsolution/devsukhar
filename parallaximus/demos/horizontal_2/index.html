@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Parallaximus Example #2</title>
+
+	<style type="text/css">
+		/*
+		 ********** Common parallaximus styles ***********/
+		.w-parallaximus {
+			position: relative;
+			overflow: hidden;
+			}
+			.w-parallaximus-layer {
+				position: absolute;
+				}
+				.w-parallaximus-layer > img {
+					position: absolute;
+					}
+
+		/*
+		 *********** Current example styles **************/
+		.w-parallaximus {
+			width: 1400px;
+			height: 700px;
+			background: url(img/0-background.jpg);
+			}
+			.w-parallaximus-layer.index_1 {
+				width: 1480px;
+				height: 740px;
+				}
+				.w-parallaximus-layer.index_1 > img {
+					left: 161px;
+					top: 331px;
+					}
+			.w-parallaximus-layer.index_2 {
+				width: 1560px;
+				height: 780px;
+				}
+				.w-parallaximus-layer.index_2 > img {
+					left: 201px;
+					top: 481px;
+					}
+			.w-parallaximus-layer.index_3 {
+				width: 1640px;
+				height: 820px;
+				}
+				.w-parallaximus-layer.index_3 > img {
+					left: 240px;
+					top: 435px;
+					}
+			.w-parallaximus-layer.index_4 {
+				width: 1720px;
+				height: 860px;
+				}
+				.w-parallaximus-layer.index_4 > img.index_41 {
+					left: 826px;
+					top: 242px;
+					}
+				.w-parallaximus-layer.index_4 > img.index_42 {
+					left: 904px;
+					top: 269px;
+					}
+			.w-parallaximus-layer.index_5 {
+				width: 1800px;
+				height: 900px;
+				}
+				.w-parallaximus-layer.index_5 > img {
+					left: 321px;
+					top: 287px;
+					}
+	</style>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script type="text/javascript" src="../../js/Parallaximus.MooTools.js"></script>
+
+
+</head>
+<body>
+
+	<div class="w-parallaximus width_fixed height_fixed i-autoinit" onclick="return {perspective: 200, duration: 5000}">
+		<div class="w-parallaximus-layer index_1">
+			<img src="img/1-slogan1.png" width="470" height="64" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_2">
+			<img src="img/2-slogan3.png" width="279" height="64" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_3">
+			<img src="img/3-slogan2.png" width="483" height="64" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_4">
+			<img class="index_41" src="img/4-image1.png" width="617" height="408" alt="">
+			<img class="index_42" src="img/4-image2.jpg" width="461" height="321" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_5">
+			<img src="img/5-title.png" width="509" height="54" alt="">
+		</div>
+	</div>
+
+	<!--<div id="debug"></div>-->
+
+</body>
+</html>
