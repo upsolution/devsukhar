@@ -1,0 +1,114 @@
+body {
+	font-family: Trebuchet ms,Tahoma,sans-serif;
+	color: #37424d;
+	}
+
+/* selection */
+::selection {
+	background: #4e697d;
+	color: #fff;
+	}
+::-moz-selection {
+	background: #4e697d;
+	color: #fff;
+	}
+
+a {
+	color: #2f6b99;
+	text-decoration: none;
+	border-bottom: 1px solid #5d8eb4;
+	-webkit-transition: all 0.2s ease;
+	   -moz-transition: all 0.2s ease;
+		-ms-transition: all 0.2s ease;
+		 -o-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+	}
+	a:link,
+	a:visited {
+		color: #2f6b99;
+		}
+	a:hover,
+	a:active,
+	a:focus {
+		color: black;
+		border-bottom: 1px solid #444;
+		}
+
+.l-canvas {
+	background: #83a1bf; /* Old browsers */
+	background: -moz-linear-gradient(left,  #6b8fb2 0%, #99b2cc 50%, #6b8fb2 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#6b8fb2), color-stop(50%,#99b2cc), color-stop(100%,#6b8fb2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* IE10+ */
+	background: linear-gradient(to right,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b8fb2', endColorstr='#6b8fb2',GradientType=1 ); /* IE6-9 */
+	}
+.l-canvas-h {
+	margin: 0 auto;
+	width: 600px;
+	padding: 20px 0 60px;
+	}
+.w-parallaximus {
+	height: 300px;
+	width: 600px;
+	}
+		
+/* g-html */
+h1, h2, h3, h4 {
+	font-family: Trebuchet ms,Tahoma,sans-serif;
+	font-weight: 200;
+	}
+h1 {
+	margin: 0 0 20px;
+	color: #324150;
+	font-size: 36px;
+	line-height: 44px;
+	}
+h2 {
+	margin: 0 0 20px;
+	color: #324150;
+	font-size: 30px;
+	line-height: 38px;
+	text-shadow: 0 2px 0 rgba(255,255,255,0.2)
+	}
+h3 {
+	margin: 0 0 20px;
+	color: #fff;
+	font-size: 22px;
+	line-height: 28px;
+	text-shadow: 0 2px 0 rgba(0,0,0,0.25)
+	}
+h4 {
+	margin: 0 0 20px;
+	color: #324150;
+	font-size: 18px;
+	line-height: 24px;
+	}
+p {
+	margin: 0 0 20px;
+	font-size: 15px;
+	line-height: 24px;
+	}
+hr {
+	border-bottom: 1px solid #ddd;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	margin: 0 0 20px;
+	height: 1px;
+	}
+ul {
+	margin: 0 0 25px;
+	padding: 0 0 0 35px;
+	}
+ol {
+	margin: 0 0 25px;
+	padding: 0 0 0 35px;
+	}
+	li {
+		padding: 0;
+		margin: 0 0 5px;
+		font-size: 14px;
+		line-height: 20px;
+		}

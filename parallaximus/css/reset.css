@@ -1,0 +1,167 @@
+/*
+ * Reset.css
+ * Partially adapted from https://github.com/necolas/normalize.css
+ */
+
+/*
+ * Global resets
+ */
+html, body, div, span, object, iframe, img,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code,
+del, dfn, em, ins, kbd, q, samp, small, strong, sub, sup, var, b, i,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, button, details, figcaption, figure, footer, header, hgroup, menu, nav, section, menu, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+	}
+html, body {
+	width: 100%;
+	height: 100%;
+	}
+
+/*
+ * Corrects `block` display not defined in IE6/7/8/9 & FF3.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+	display: block;
+	}
+
+/*
+ * Corrects `inline-block` display not defined in IE6/7/8/9 & FF3.
+ */
+audio,
+canvas,
+video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	}
+
+/*
+ * Prevents modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS5 devices.
+ */
+audio:not([controls]) {
+	display: none;
+	height: 0;
+	}
+
+/*
+ * Addresses styling for `hidden` attribute not present in IE7/8/9, FF3, S4.
+ * Known issue: no IE6 support.
+ */
+[hidden] {
+	display: none;
+	}
+
+/*
+ * Addresses `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+	font-family: sans-serif;
+	}
+
+/*
+ * 1. Corrects text resizing oddly in IE6/7 when body `font-size` is set using `em` units.
+ * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
+ */
+html {
+	overflow-y: scroll;
+	font-size: 100%; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+	-ms-text-size-adjust: 100%; /* 2 */
+	}
+body {
+	text-align: left;
+	position: relative;
+	}
+
+
+/*
+ ************************************ Common *********************************/
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-width: 0;
+	}
+caption, td, th {
+	vertical-align: top;
+	}
+dl, ul, ol {
+	list-style: none;
+	margin: 0;
+	}
+li {
+	vertical-align: top;
+	}
+
+/*
+ * 1. Removes border when inside `a` element in IE6/7/8/9, FF3.
+ * 2. Improves image quality when scaled in IE7.
+ *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+img {
+	border: 0; /* 1 */
+	-ms-interpolation-mode: bicubic; /* 2 */
+	}
+
+/*
+ * Addresses `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+	outline: 0;
+	}
+
+/*
+ * Improves readability when focused and also mouse hovered in all browsers.
+ * people.opera.com/patrickl/experiments/keyboard/test
+ */
+a:active,
+a:hover {
+	outline: 0;
+	}
+
+/*
+ * Removes `outline` border in buttons and inputs in FF.
+ */
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+	border: none;
+	}
+	
+
+blockquote, q {
+	quotes: none;
+	}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+	}
