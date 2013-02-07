@@ -50,7 +50,7 @@ var Parallaximus = new Class({
 		transition: Fx.Transitions.Elastic.easeOut,
 
 		/**
-		 * @var {Number} Resize delay to reduce resize events
+		 * @var {Number} Resize delay to reduce resize event calls
 		 */
 		resizeDelay: 50
 	},
@@ -70,16 +70,14 @@ var Parallaximus = new Class({
 		this.baseCntSz = this.container.getSize();
 		this.baseLayerSz = this.layers.getSize();
 		this.baseImgSz = [];
-		Array.each(this.layers, function(layer, index){
-			this.baseImgSz[index] = layer.getElements('img').getStyles(['left', 'top', 'width', 'height']);
+		Array.each(this.layers, function(layer, lrIndex){
+			// TODO The Properties-are-not-defined case
+			this.baseImgSz[lrIndex] = layer.getElements('img').getStyles(['left', 'top', 'width', 'height']);
 		}, this);
 		// Current container / layer sizes
-		this.curCntSz = this.container.getSize();
-		this.curLayerSz = this.layers.getSize();
+		this.curCntSz = Object.clone(this.baseCntSz);
+		this.curLayerSz = this.baseLayerSz.clone();
 		// Ratios for quicker calculations
-		this.layerMin = [];
-		this.layerRatio = [];
-		this.layerAngle = [];
 		this._countRatios();
 		// 3d transforms
 		if (this.options.use3d){
@@ -89,14 +87,14 @@ var Parallaximus = new Class({
 		// Count frame rate
 		this._frameRate = Math.round(1000 / this.options.fps);
 		// Mouse events for desktop browsers
-		if (!('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
+		if ( ! ('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
 			this.container.addEvents({
 				mousemove: function(e){
-					var pos = this.container.getPosition(),
+					var offset = this.container.getPosition(),
 						now = Date.now();
 					// Reducing processor load for too frequent event calls
 					if (this._lastFrame + this._frameRate > now) return;
-					this.stop().set([(e.page.x - pos.x) / this.curCntSz.x, (e.page.y - pos.y) / this.curCntSz.y]);
+					this.stop().set([(e.page.x - offset.x) / this.curCntSz.x, (e.page.y - offset.y) / this.curCntSz.y]);
 					this._lastFrame = now;
 				}.bind(this),
 				mouseout: function(e){
@@ -106,11 +104,23 @@ var Parallaximus = new Class({
 		}
 		// Device orientation events for touch devices
 		if ('ontouchstart' in window && 'DeviceOrientationEvent' in window){
-			window.addEventListener("deviceorientation", function(e){ this._deviceOrientationChange(e); }.bind(this));
+			window.addEventListener("deviceorientation", function(e){
+				var now = Date.now();
+				// Reducing processor load for too frequent event calls
+				if (this._lastFrame + this._frameRate > now) return;
+				this._deviceOrientationChange(e);
+				this._lastFrame = now;
+			}.bind(this));
+		}
+		// Link handling
+		if (this.options.link !== false){
+			this.container
+				.addEvent('click', function(e){ location.href = this.options.link; }.bind(this))
+				.setStyle('cursor', 'pointer');
 		}
 		// Set to basepoint
 		this.set(this.options.basePoint);
-		// Fluid width
+		// Responsive width/height
 		if ( ! this.container.hasClass('width_fixed')){
 			window.addEvent('resize', function(){
 				clearTimeout(this._resizeTimer);
@@ -161,7 +171,6 @@ var Parallaximus = new Class({
 	 */
 	_deviceOrientationChange: function(e)
 	{
-		// todo Prevent browser overload?
 		var gamma = e.gamma,
 			beta = e.beta,
 			coord;
@@ -196,7 +205,6 @@ var Parallaximus = new Class({
 
 	/**
 	 * Handle container resize
-	 * @param {Event} e
 	 * @private
 	 */
 	_handleResize: function()
@@ -206,8 +214,9 @@ var Parallaximus = new Class({
 			resizeHeight = ! this.container.hasClass('height_fixed'),
 			propList = ['width', 'height', 'left', 'top'];
 		// Resize layers
-		Array.each(this.layers, function(layer, lrIndex){
-			var layerImages = layer.getElements('img');
+		for (var lrIndex = 0, lrLen = this.layers.length; lrIndex < lrLen; lrIndex++){
+			var layer = this.layers[lrIndex],
+				layerImages = layer.getElements('img');
 			this.curLayerSz[lrIndex].x = this.baseLayerSz[lrIndex].x * resizeRatio;
 			layer.setStyle('width', this.curLayerSz[lrIndex].x);
 			if (resizeHeight){
@@ -228,7 +237,7 @@ var Parallaximus = new Class({
 					img.setStyle('left', imgCenter * resizeRatio - imgHalfWidth);
 				}
 			}, this);
-		}, this);
+		}
 		// Resize container height
 		if (resizeHeight){
 			this.curCntSz.y = this.baseCntSz.y * resizeRatio;
@@ -240,12 +249,16 @@ var Parallaximus = new Class({
 	},
 
 	/**
-	 * Should be done after each container resizing
+	 * Count ratios for quicker calculation and store them to this.layerAngle, this.layerMin, this.layerRatio
 	 * @private
 	 */
 	_countRatios: function()
 	{
-		Array.each(this.curLayerSz, function(sz, index){
+		this.layerAngle = [];
+		this.layerMin = [];
+		this.layerRatio = [];
+		for (var index = 0, len = this.layers.length; index < len; index++){
+			var sz = this.curLayerSz[index];
 			this.layerAngle[index] = {
 				x: -1 * this.options.angleXRange * (index + 1) / this.layers.length,
 				y: this.options.angleYRange * (index + 1) / this.layers.length
@@ -261,7 +274,7 @@ var Parallaximus = new Class({
 				x: this.curCntSz.x - this.curLayerSz[index].x - 2 * this.layerMin[index].x,
 				y: this.curCntSz.y - this.curLayerSz[index].y - 2 * this.layerMin[index].y
 			};
-		}, this);
+		}
 	},
 
 	/**
