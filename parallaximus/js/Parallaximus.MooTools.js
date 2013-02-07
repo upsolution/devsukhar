@@ -47,7 +47,12 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Function} Returning transition
 		 */
-		transition: Fx.Transitions.Elastic.easeOut
+		transition: Fx.Transitions.Elastic.easeOut,
+
+		/**
+		 * @var {Number} Resize delay to reduce resize events
+		 */
+		resizeDelay: 50
 	},
 
 	/**
@@ -61,9 +66,16 @@ var Parallaximus = new Class({
 		this.parent(options);
 		this.container = document.id(container);
 		this.layers = this.container.getChildren();
-		// Basic container / layers sizes
+		// Basic container / layers / images sizes
 		this.baseCntSz = this.container.getSize();
 		this.baseLayerSz = this.layers.getSize();
+		this.baseImgSz = [];
+		Array.each(this.layers, function(layer, index){
+			this.baseImgSz[index] = layer.getElements('img').getStyles(['left', 'top', 'width', 'height']);
+		}, this);
+		// Current container / layer sizes
+		this.curCntSz = this.container.getSize();
+		this.curLayerSz = this.layers.getSize();
 		// Ratios for quicker calculations
 		this.layerMin = [];
 		this.layerRatio = [];
@@ -94,47 +106,19 @@ var Parallaximus = new Class({
 		}
 		// Device orientation events for touch devices
 		if ('ontouchstart' in window && 'DeviceOrientationEvent' in window){
-			window.addEventListener(
-				"deviceorientation",
-				function(e){
-					// todo Prevent browser overload?
-					var gamma = e.gamma,
-						beta = e.beta,
-						coord;
-					switch (window.orientation){
-						case -90:
-							gamma = Math.max(-45, Math.min(45, gamma - 20));
-							beta = Math.max(-45, Math.min(45, beta));
-							coord = [(45 - beta) / 90, (gamma + 45) / 90];
-							coord = [(beta + 45) / 90, (45 - gamma) / 90];
-							break;
-						case 90:
-							gamma = Math.max(-45, Math.min(45, gamma + 20));
-							beta = Math.max(-45, Math.min(45, beta));
-							coord = [(45 - beta) / 90, (gamma + 45) / 90];
-							break;
-						case 180:
-							gamma = Math.max(-45, Math.min(45, gamma));
-							beta = Math.max(-45, Math.min(45, beta + 20));
-							coord = [(gamma + 45) / 90, (beta + 45) / 90];
-							break;
-						case 0:
-						default:
-							// Upside down
-							if (gamma < -90 || gamma > 90) gamma = Math.abs(e.gamma)/e.gamma * (180 - Math.abs(e.gamma));
-							gamma = Math.max(-45, Math.min(45, gamma));
-							beta = Math.max(-45, Math.min(45, beta - 20));
-							coord = [(45 - gamma) / 90, (45 - beta) / 90];
-							break;
-					}
-
-//					document.getElement('#debug').set('text', window.orientation + ' '
-//						+ Math.round(e.alpha*100)/100 + ' ' + Math.round(e.beta*100)/100 + ' ' + Math.round(e.gamma*100)/100 + ' | ' + Math.round(coord[0]*100)/100 + ' ' + Math.round(coord[1]*100)/100);
-					this.stop().set(coord);
-				}.bind(this)
-			);
+			window.addEventListener("deviceorientation", function(e){ this._deviceOrientationChange(e); }.bind(this));
 		}
+		// Set to basepoint
 		this.set(this.options.basePoint);
+		// Fluid width
+		if ( ! this.container.hasClass('width_fixed')){
+			window.addEvent('resize', function(){
+				clearTimeout(this._resizeTimer);
+				this._resizeTimer = this._handleResize.delay(this.options.resizeDelay, this);
+			}.bind(this));
+			this.container.setStyle('width', '100%');
+			this._handleResize();
+		}
 		this._lastFrame = Date.now();
 	},
 
@@ -172,13 +156,95 @@ var Parallaximus = new Class({
 	},
 
 	/**
+	 * Event to fire on deviceorientation change
+	 * @private
+	 */
+	_deviceOrientationChange: function(e)
+	{
+		// todo Prevent browser overload?
+		var gamma = e.gamma,
+			beta = e.beta,
+			coord;
+		switch (window.orientation){
+			case -90:
+				gamma = Math.max(-45, Math.min(45, gamma - 20));
+				beta = Math.max(-45, Math.min(45, beta));
+				coord = [(45 - beta) / 90, (gamma + 45) / 90];
+				coord = [(beta + 45) / 90, (45 - gamma) / 90];
+				break;
+			case 90:
+				gamma = Math.max(-45, Math.min(45, gamma + 20));
+				beta = Math.max(-45, Math.min(45, beta));
+				coord = [(45 - beta) / 90, (gamma + 45) / 90];
+				break;
+			case 180:
+				gamma = Math.max(-45, Math.min(45, gamma));
+				beta = Math.max(-45, Math.min(45, beta + 20));
+				coord = [(gamma + 45) / 90, (beta + 45) / 90];
+				break;
+			case 0:
+			default:
+				// Upside down
+				if (gamma < -90 || gamma > 90) gamma = Math.abs(e.gamma)/e.gamma * (180 - Math.abs(e.gamma));
+				gamma = Math.max(-45, Math.min(45, gamma));
+				beta = Math.max(-45, Math.min(45, beta - 20));
+				coord = [(45 - gamma) / 90, (45 - beta) / 90];
+				break;
+		}
+		this.stop().set(coord);
+	},
+
+	/**
+	 * Handle container resize
+	 * @param {Event} e
+	 * @private
+	 */
+	_handleResize: function()
+	{
+		this.curCntSz = this.container.getSize();
+		var resizeRatio = this.curCntSz.x / this.baseCntSz.x,
+			resizeHeight = ! this.container.hasClass('height_fixed'),
+			propList = ['width', 'height', 'left', 'top'];
+		// Resize layers
+		Array.each(this.layers, function(layer, lrIndex){
+			var layerImages = layer.getElements('img');
+			this.curLayerSz[lrIndex].x = this.baseLayerSz[lrIndex].x * resizeRatio;
+			layer.setStyle('width', this.curLayerSz[lrIndex].x);
+			if (resizeHeight){
+				this.curLayerSz[lrIndex].y = this.baseLayerSz[lrIndex].y * resizeRatio;
+				layer.setStyle('height', this.curLayerSz[lrIndex].y);
+			}
+			// Resize layer images
+			Array.each(layerImages, function(img, imgIndex){
+				if (resizeHeight){
+					// Resize width and height
+					Array.each(propList, function(prop){
+						img.setStyle(prop, parseInt(this.baseImgSz[lrIndex][imgIndex][prop]) * resizeRatio);
+					}, this);
+				}else{
+					// Resize width with fixed height
+					var imgHalfWidth = parseInt(this.baseImgSz[lrIndex][imgIndex].width) / 2,
+						imgCenter = parseInt(this.baseImgSz[lrIndex][imgIndex].left) + imgHalfWidth;
+					img.setStyle('left', imgCenter * resizeRatio - imgHalfWidth);
+				}
+			}, this);
+		}, this);
+		// Resize container height
+		if (resizeHeight){
+			this.curCntSz.y = this.baseCntSz.y * resizeRatio;
+			this.container.setStyle('height', this.curCntSz.y);
+		}
+		this.curLayerSz = this.layers.getSize();
+		this._countRatios();
+		this.set(this.now);
+	},
+
+	/**
 	 * Should be done after each container resizing
 	 * @private
 	 */
 	_countRatios: function()
 	{
-		this.curCntSz = this.container.getSize();
-		this.curLayerSz = this.layers.getSize();
 		Array.each(this.curLayerSz, function(sz, index){
 			this.layerAngle[index] = {
 				x: -1 * this.options.angleXRange * (index + 1) / this.layers.length,

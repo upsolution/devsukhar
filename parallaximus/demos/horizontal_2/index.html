@@ -20,6 +20,10 @@
 
 		/*
 		 *********** Current example styles **************/
+		.l-canvas {
+			width: 80%;
+			margin: 0 auto;
+			}
 		.w-parallaximus {
 			width: 1400px;
 			height: 700px;
@@ -78,23 +82,27 @@
 </head>
 <body>
 
-	<div class="w-parallaximus width_fixed height_fixed i-autoinit" onclick="return {perspective: 200, duration: 5000}">
-		<div class="w-parallaximus-layer index_1">
-			<img src="img/1-slogan1.png" width="470" height="64" alt="">
+	<div class="l-canvas">
+
+		<div class="w-parallaximus i-autoinit" onclick="return {perspective: 200, duration: 5000}">
+			<div class="w-parallaximus-layer index_1">
+				<img src="img/1-slogan1.png" width="470" height="64" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_2">
+				<img src="img/2-slogan3.png" width="279" height="64" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_3">
+				<img src="img/3-slogan2.png" width="483" height="64" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_4">
+				<img class="index_41" src="img/4-image1.png" width="617" height="408" alt="">
+				<img class="index_42" src="img/4-image2.jpg" width="461" height="321" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_5">
+				<img src="img/5-title.png" width="509" height="54" alt="">
+			</div>
 		</div>
-		<div class="w-parallaximus-layer index_2">
-			<img src="img/2-slogan3.png" width="279" height="64" alt="">
-		</div>
-		<div class="w-parallaximus-layer index_3">
-			<img src="img/3-slogan2.png" width="483" height="64" alt="">
-		</div>
-		<div class="w-parallaximus-layer index_4">
-			<img class="index_41" src="img/4-image1.png" width="617" height="408" alt="">
-			<img class="index_42" src="img/4-image2.jpg" width="461" height="321" alt="">
-		</div>
-		<div class="w-parallaximus-layer index_5">
-			<img src="img/5-title.png" width="509" height="54" alt="">
-		</div>
+
 	</div>
 
 	<!--<div id="debug"></div>-->
