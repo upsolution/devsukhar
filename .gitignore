@@ -1,2 +1,4 @@
 .idea
-*/.idea
+products/*/.idea
+website/.idea
+website/*/.idea

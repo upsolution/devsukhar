@@ -1,3 +1,11 @@
+/*
+ * Parallaximus
+ *
+ * @version 1.0
+ *
+ * Copyright 2013, Ruslan Sukhar
+ */
+
 !function($){
 
 	/*
