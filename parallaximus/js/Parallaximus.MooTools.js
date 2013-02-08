@@ -72,6 +72,7 @@ var Parallaximus = new Class({
 		this.layers = this.container.getChildren();
 		// Basic container / layers / images sizes
 		this.baseCntSz = this.container.getSize();
+		// TODO User-forgot-to-set-layer-width-or-height case
 		this.baseLayerSz = this.layers.getSize();
 		this.baseImgSz = [];
 		Array.each(this.layers, function(layer, lrIndex){

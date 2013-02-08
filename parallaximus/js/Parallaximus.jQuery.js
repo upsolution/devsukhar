@@ -8,13 +8,15 @@
 		this.container = $(container);
 		// Apply options
 		if (container.onclick != undefined){
-			options = $.extend({}, $.fn.parallaximus.defaults, container.onclick() || {}, typeof options == 'object' && options);
+			options = $.extend({}, container.onclick() || {}, typeof options == 'object' && options);
 			this.container.removeProp('onclick');
 		}
+		options = $.extend({}, $.fn.parallaximus.defaults, typeof options == 'object' && options);
 		this.options = options;
 		this.layers = this.container.children();
 		// Basic container / layers / images sizes
 		this.baseCntSz = {x: this.container.width(), y: this.container.height()};
+		// TODO User-forgot-to-set-layer-width-or-height case
 		this.baseLayerSz = this._getLayerSizes();
 		this.baseImgSz = [];
 		this.layers.each(function(lrIndex, layer){
