@@ -5,9 +5,13 @@
 	var Parallaximus = function(container, options){
 		// Context
 		var that = this;
-		// Apply options
-		this.options = options;
 		this.container = $(container);
+		// Apply options
+		if (container.onclick != undefined){
+			options = $.extend({}, $.fn.parallaximus.defaults, container.onclick() || {}, typeof options == 'object' && options);
+			this.container.removeProp('onclick');
+		}
+		this.options = options;
 		this.layers = this.container.children();
 		// Basic container / layers / images sizes
 		this.baseCntSz = {x: this.container.width(), y: this.container.height()};
@@ -41,11 +45,23 @@
 					// Reducing processor load for too frequent event calls
 					if (that._lastFrame + that._frameRate > now) return;
 					// TODO Stop animation at this moment
+					that.container.stop(true, true);
 					that.set([(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y]);
 					that._lastFrame = now;
 				})
 				.mouseleave(function(e){
-//					this.start(this.options.basePoint.clone());
+					var from = $.extend({}, that.now),
+						to = that.options.basePoint;
+					that.container.css('delta', 0).animate({
+						delta: 1
+					}, {
+						duration: that.options.duration,
+						easing: 'easeOutElastic',
+						step: function(delta){
+							that.set([(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]]);
+						},
+						queue: false
+					});
 				});
 		}
 		// Device orientation events for touch devices
@@ -95,7 +111,7 @@
 		 * @private
 		 * @return {String} Prefix or false
 		 */
-		, _get3DPrefix: function() {
+	  , _get3DPrefix: function() {
 			var div = document.createElement('div'),
 				ret = false,
 				properties = ['perspectiveProperty', 'WebkitPerspective'],
@@ -125,7 +141,7 @@
 		 * Event to fire on deviceorientation change
 		 * @private
 		 */
-		, _deviceOrientationChange: function(e){
+	  , _deviceOrientationChange: function(e){
 			var gamma = e.gamma
 			  , beta = e.beta
 			  , coord;
@@ -163,7 +179,7 @@
 		 * Handle container resize
 		 * @private
 		 */
-		, _handleResize: function(){
+	  , _handleResize: function(){
 			this.curCntSz = {x: this.container.width(), y: this.container.height()};
 			var resizeRatio = this.curCntSz.x / this.baseCntSz.x
 			  , resizeHeight = ! this.container.hasClass('height_fixed')
@@ -190,7 +206,6 @@
 						}
 					}else{
 						// Resize width with fixed height
-						console.log(this.baseImgSz, lrIndex, imgIndex)
 						var imgHalfWidth = parseInt(this.baseImgSz[lrIndex][imgIndex].width) / 2,
 							imgCenter = parseInt(this.baseImgSz[lrIndex][imgIndex].left) + imgHalfWidth;
 						img.css('left', imgCenter * resizeRatio - imgHalfWidth);
@@ -211,7 +226,7 @@
 		 * Count ratios for quicker calculation and store them to this.layerAngle, this.layerMin, this.layerRatio
 		 * @private
 		 */
-		, _countRatios: function(){
+	  , _countRatios: function(){
 			this.layerAngle = [];
 			this.layerMin = [];
 			this.layerRatio = [];
@@ -239,7 +254,7 @@
 		 * Render parallaximus frame.
 		 * @param {Array} coord [x, y] Both x and y are ranged in [0, 1]
 		 */
-		, set: function(coord){
+	  , set: function(coord){
 			for (var index = 0, len = this.layers.length; index < len; index++){
 				var layer = $(this.layers[index]);
 				layer
@@ -260,16 +275,28 @@
 
 	};
 
-	$.fn.parallaximus = function(option){
+	// EaseOutElastic easing
+	if ($.easing.easeOutElastic == undefined){
+		/**
+		 * Original function by George McGinley Smith
+		 * @link http://gsgd.co.uk/sandbox/jquery/easing/
+		 */
+		$.easing.easeOutElastic = function (x, t, b, c, d) {
+			var s=1.70158;var p=0;var a=c;
+			if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+			if (a < Math.abs(c)) { a=c; var s=p/4; }
+			else var s = p/(2*Math.PI) * Math.asin (c/a);
+			return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+		}
+	}
+
+	$.fn.parallaximus = function(options){
 		return this.each(function(){
 			var $this = $(this)
-				, data = $this.data('parallaximus')
-				, options = $.extend({}, $.fn.parallaximus.defaults, typeof option == 'object' && option);
+			  , data = $this.data('parallaximus');
 			if ( ! data) $this.data('parallaximus', (data = new Parallaximus(this, options)))
 		});
 	};
-
-
 
 	$.fn.parallaximus.defaults = {
 		/**
@@ -290,7 +317,7 @@
 		/**
 		 * @var {Number} Perspective of 3d effects
 		 */
-	  , perspective: 800
+	  , perspective: 400
 
 		/**
 		 * @var {Number} Range of horisontal rotation
@@ -325,9 +352,9 @@
 
 	$.fn.parallaximus.Constructor = Parallaximus;
 
-}(window.jQuery);
+}(jQuery);
 
 // Auto init
-$(document).ready(function(){
+jQuery(document).ready(function($){
 	$('.w-parallaximus.i-autoinit').parallaximus();
 });

@@ -22,7 +22,7 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Number} Perspective of 3d effects
 		 */
-		perspective: 800,
+		perspective: 400,
 
 		/**
 		 * @var {Number} Range of horisontal rotation
@@ -62,9 +62,13 @@ var Parallaximus = new Class({
 	 */
 	initialize: function(container, options)
 	{
-		// Apply options
-		this.parent(options);
 		this.container = document.id(container);
+		// Apply options
+		if (container.onclick != undefined){
+			options = Object.merge(container.onclick() || {}, typeof options == 'object' && options);
+			container.erase('onclick');
+		}
+		this.parent(options);
 		this.layers = this.container.getChildren();
 		// Basic container / layers / images sizes
 		this.baseCntSz = this.container.getSize();
@@ -317,11 +321,6 @@ var Parallaximus = new Class({
  */
 window.addEvent('domready', function(){
 	Array.each(document.getElements('.w-parallaximus.i-autoinit'), function(widget){
-		var options = {};
-		if (widget.onclick != undefined){
-			options = widget.onclick() || {};
-			widget.erase('onclick');
-		}
-		window.pr = new Parallaximus(widget, options);
+		widget.store('parallaximus', new Parallaximus(widget));
 	});
 });
