@@ -28,7 +28,7 @@
 		});
 		// Current container / layer sizes
 		this.curCntSz = $.extend({}, this.baseCntSz);
-		this.curLayerSz = this.baseLayerSz.slice();
+		this.curLayerSz = $.extend(true, [], this.baseLayerSz);
 		// Ratios for quicker calculations
 		this._countRatios();
 		// 3d transforms
@@ -46,7 +46,6 @@
 						now = Date.now();
 					// Reducing processor load for too frequent event calls
 					if (that._lastFrame + that._frameRate > now) return;
-					// TODO Stop animation at this moment
 					that.container.stop(true, true);
 					that.set([(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y]);
 					that._lastFrame = now;
@@ -144,9 +143,9 @@
 		 * @private
 		 */
 		_deviceOrientationChange: function(e){
-			var gamma = e.gamma
-			  , beta = e.beta
-			  , coord;
+			var gamma = e.gamma,
+				beta = e.beta,
+				coord;
 			switch (window.orientation){
 				case -90:
 					gamma = Math.max(-45, Math.min(45, gamma - 20));
@@ -173,7 +172,7 @@
 					coord = [(45 - gamma) / 90, (45 - beta) / 90];
 					break;
 			}
-			// TODO Stop effects
+			that.container.stop(true, true);
 			this.set(coord);
 		},
 
