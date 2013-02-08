@@ -56,7 +56,7 @@
 						delta: 1
 					}, {
 						duration: that.options.duration,
-						easing: 'easeOutElastic',
+						easing: that.options.transition,
 						step: function(delta){
 							that.set([(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]]);
 						},
@@ -102,7 +102,7 @@
 				sizes[index] = {x: $(layer).width(), y: $(layer).height()};
 			});
 			return sizes;
-		}
+		},
 
 		/**
 		 * Obtain browser css3 prefix or false if 3d transforms are not supported
@@ -111,7 +111,7 @@
 		 * @private
 		 * @return {String} Prefix or false
 		 */
-	  , _get3DPrefix: function() {
+		_get3DPrefix: function() {
 			var div = document.createElement('div'),
 				ret = false,
 				properties = ['perspectiveProperty', 'WebkitPerspective'],
@@ -135,13 +135,13 @@
 				div.parentNode.removeChild(div);
 			}
 			return ret;
-		}
+		},
 
 		/**
 		 * Event to fire on deviceorientation change
 		 * @private
 		 */
-	  , _deviceOrientationChange: function(e){
+		_deviceOrientationChange: function(e){
 			var gamma = e.gamma
 			  , beta = e.beta
 			  , coord;
@@ -173,18 +173,18 @@
 			}
 			// TODO Stop effects
 			this.set(coord);
-		}
+		},
 
 		/**
 		 * Handle container resize
 		 * @private
 		 */
-	  , _handleResize: function(){
+		_handleResize: function(){
 			this.curCntSz = {x: this.container.width(), y: this.container.height()};
-			var resizeRatio = this.curCntSz.x / this.baseCntSz.x
-			  , resizeHeight = ! this.container.hasClass('height_fixed')
-			  , propList = ['width', 'height', 'left', 'top']
-			  , that = this;
+			var resizeRatio = this.curCntSz.x / this.baseCntSz.x,
+				resizeHeight = ! this.container.hasClass('height_fixed'),
+				propList = ['width', 'height', 'left', 'top'],
+				that = this;
 			// Resize layers
 			for (var lrIndex = 0, lrLen = this.layers.length; lrIndex < lrLen; lrIndex++){
 				var layer = $(this.layers[lrIndex]),
@@ -220,13 +220,13 @@
 			this.curLayerSz = this._getLayerSizes();
 			this._countRatios();
 			this.set(this.now);
-		}
+		},
 
 		/**
 		 * Count ratios for quicker calculation and store them to this.layerAngle, this.layerMin, this.layerRatio
 		 * @private
 		 */
-	  , _countRatios: function(){
+		_countRatios: function(){
 			this.layerAngle = [];
 			this.layerMin = [];
 			this.layerRatio = [];
@@ -282,7 +282,7 @@
 		 * @link http://gsgd.co.uk/sandbox/jquery/easing/
 		 */
 		$.easing.easeOutElastic = function (x, t, b, c, d) {
-			var s=1.70158;var p=0;var a=c;
+			var s = 1.70158, p = 0, a = c;
 			if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
 			if (a < Math.abs(c)) { a=c; var s=p/4; }
 			else var s = p/(2*Math.PI) * Math.asin (c/a);
@@ -292,8 +292,8 @@
 
 	$.fn.parallaximus = function(options){
 		return this.each(function(){
-			var $this = $(this)
-			  , data = $this.data('parallaximus');
+			var $this = $(this),
+				data = $this.data('parallaximus');
 			if ( ! data) $this.data('parallaximus', (data = new Parallaximus(this, options)))
 		});
 	};
@@ -302,52 +302,52 @@
 		/**
 		 * @var {String} Link for
 		 */
-		link: false
+		link: false,
 
 		/**
 		 * @var {Number} Frame per second limit for rendering
 		 */
-	  , fps: 30
+		fps: 30,
 
 		/**
 		 * @var {Boolean} Enable 3d transformations
 		 */
-	  , use3d: true
+		use3d: true,
 
 		/**
 		 * @var {Number} Perspective of 3d effects
 		 */
-	  , perspective: 400
+	 	perspective: 400,
 
 		/**
 		 * @var {Number} Range of horisontal rotation
 		 */
-	  , angleXRange: 10
+	 	angleXRange: 10,
 
 		/**
 		 * @var {Number} Range of vertical rotation
 		 */
-	  , angleYRange: 10
+		angleYRange: 10,
 
 		/**
 		 * @var {Number} Point for basic position (after the cursor moves out of the container)
 		 */
-	  , basePoint: [.5, .5]
+		basePoint: [.5, .5],
 
 		/**
 		 * @var {Number} Return to base point duration
 		 */
-	  , duration: 2000
+		duration: 2000,
 
 		/**
-		 * @var {Function} Returning transition
+		 * @var {Function} Returning-to-basepoint transition
 		 */
-		//, transition: Fx.Transitions.Elastic.easeOut
+		transition: 'easeOutElastic',
 
 		/**
 		 * @var {Number} Resize delay to reduce resize event calls
 		 */
-	  , resizeDelay: 50
+		resizeDelay: 50
 	};
 
 	$.fn.parallaximus.Constructor = Parallaximus;

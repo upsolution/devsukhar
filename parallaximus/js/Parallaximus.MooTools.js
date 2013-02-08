@@ -45,7 +45,7 @@ var Parallaximus = new Class({
 		duration: 2000,
 
 		/**
-		 * @var {Function} Returning transition
+		 * @var {Function} Returning-to-basepoint transition
 		 */
 		transition: Fx.Transitions.Elastic.easeOut,
 
