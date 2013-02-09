@@ -1,6 +1,14 @@
 body {
 	font-family: Trebuchet ms,Tahoma,sans-serif;
 	color: #37424d;
+	background: #83a1bf; /* Old browsers */
+	background: -moz-linear-gradient(left,  #6b8fb2 0%, #99b2cc 50%, #6b8fb2 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#6b8fb2), color-stop(50%,#99b2cc), color-stop(100%,#6b8fb2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* IE10+ */
+	background: linear-gradient(to right,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b8fb2', endColorstr='#6b8fb2',GradientType=1 ); /* IE6-9 */
 	}
 ::selection {
 	background: #4e697d;
@@ -49,8 +57,6 @@ h1 {
 h2 {
 	margin: 0 0 30px;
 	padding: 10px 0 4px;
-	border-bottom: 1px solid rgba(0,0,0,0.15);
-	box-shadow: 0 1px 0 rgba(255,255,255,0.25);
 	color: #324150;
 	font-size: 30px;
 	line-height: 38px;
@@ -89,85 +95,67 @@ ol {
 		line-height: 20px;
 		}
 
-.l-canvas {
-	background: #83a1bf; /* Old browsers */
-	background: -moz-linear-gradient(left,  #6b8fb2 0%, #99b2cc 50%, #6b8fb2 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#6b8fb2), color-stop(50%,#99b2cc), color-stop(100%,#6b8fb2)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* IE10+ */
-	background: linear-gradient(to right,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b8fb2', endColorstr='#6b8fb2',GradientType=1 ); /* IE6-9 */
-	}
-	.l-canvas-middle {
-		margin: 0 auto;
-		width: 800px;
-		padding: 0 0 60px;
-		}
-
-.w-parallaximus {
+.l-canvas-middle {
+	margin: 0 auto;
 	width: 800px;
+	padding: 0 0 60px;
+	}
+
+.sales-page .w-parallaximus {
 	height: 400px;
+	width: 800px;
 	/*max-width: 1400px;*/
 	min-width: 800px;
-	position: relative;
 	margin: 0 auto;
-	overflow: hidden;
 	}
-	.w-parallaximus-layer {
-		position: absolute;
+	.sales-page .w-parallaximus-layer.index_1 {
+		height: 450px;
+		width: 1100px;
 		}
-		.w-parallaximus-layer img {
-			position: absolute;
+		.sales-page .w-parallaximus-layer.index_1 > img {
+			left: 468px;
+			top: 180px;
 			}
-		.w-parallaximus-layer.index_1 {
-			height: 450px;
-			width: 1100px;
+	.sales-page .w-parallaximus-layer.index_2 {
+		height: 500px;
+		width: 1200px;
+		}
+		.sales-page .w-parallaximus-layer.index_2 > img {
+			left: 710px;
+			top: 205px;
 			}
-			.w-parallaximus-layer.index_1 > img {
-				left: 468px;
-				top: 180px;
-				}
-		.w-parallaximus-layer.index_2 {
-			height: 500px;
-			width: 1200px;
+	.sales-page .w-parallaximus-layer.index_3 {
+		height: 550px;
+		width: 1300px;
+		}
+		.sales-page .w-parallaximus-layer.index_3 > img {
+			left: 468px;
+			top: 230px;
 			}
-			.w-parallaximus-layer.index_2 > img {
-				left: 710px;
-				top: 205px;
-				}
-		.w-parallaximus-layer.index_3 {
-			height: 550px;
-			width: 1300px;
+	.sales-page .w-parallaximus-layer.index_4 {
+		height: 600px;
+		width: 1400px;
+		}
+		.sales-page .w-parallaximus-layer.index_4 > img {
+			left: 700px;
+			top: 255px;
 			}
-			.w-parallaximus-layer.index_3 > img {
-				left: 468px;
-				top: 230px;
-				}
-		.w-parallaximus-layer.index_4 {
-			height: 600px;
-			width: 1400px;
+	.sales-page .w-parallaximus-layer.index_5 {
+		height: 650px;
+		width: 1500px;
+		}
+		.sales-page .w-parallaximus-layer.index_5 > img {
+			left: 468px;
+			top: 280px;
 			}
-			.w-parallaximus-layer.index_4 > img {
-				left: 700px;
-				top: 255px;
-				}
-		.w-parallaximus-layer.index_5 {
-			height: 650px;
-			width: 1500px;
+	.sales-page .w-parallaximus-layer.index_6 {
+		height: 700px;
+		width: 1600px;
+		}
+		.sales-page .w-parallaximus-layer.index_6 > img {
+			left: 1008px;
+			top: 305px;
 			}
-			.w-parallaximus-layer.index_5 > img {
-				left: 468px;
-				top: 280px;
-				}
-		.w-parallaximus-layer.index_6 {
-			height: 700px;
-			width: 1600px;
-			}
-			.w-parallaximus-layer.index_6 > img {
-				left: 1008px;
-				top: 305px;
-				}
 
 .l-examples {
 	font-size: 0;

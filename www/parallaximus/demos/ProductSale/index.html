@@ -6,9 +6,25 @@
 
 	<!-- Basic Parallaximus styles -->
 	<link rel="stylesheet" type="text/css" href="../../css/parallaximus.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
 
 	<!-- Current demo styles -->
 	<style type="text/css">
+		.l-canvas {
+			padding: 40px 0;
+			text-align: center;
+			}
+		.l-canvas-top {
+			width: 591px;
+			margin: 0 auto 40px;
+			padding: 122px 0 0 70px;
+			height: 520px;
+			background: url(img/window1.png) no-repeat 0 0;
+			}
+		.l-canvas-middle {
+			width: auto;
+			}
 		.w-parallaximus {
 			width: 240px;
 			height: 400px;
@@ -67,24 +83,29 @@
 
 </head>
 <body>
-
-	<div class="w-parallaximus width_fixed height_fixed">
-		<div class="w-parallaximus-layer index_1">
-			<img src="img/1-product.png" width="165" height="219" alt="">
+	<div class="l-canvas">
+	<div class="l-canvas-top">
+	
+		<div class="w-parallaximus width_fixed height_fixed">
+			<div class="w-parallaximus-layer index_1">
+				<img src="img/1-product.png" width="165" height="219" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_2">
+				<img src="img/2-text.png" width="130" height="42" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_3">
+				<img src="img/3-title.png" width="182" height="28" alt="">
+			</div>
+			<div class="w-parallaximus-layer index_4">
+				<img src="img/4-price.png" width="120" height="120" alt="">
+			</div>
 		</div>
-		<div class="w-parallaximus-layer index_2">
-			<img src="img/2-text.png" width="130" height="42" alt="">
-		</div>
-		<div class="w-parallaximus-layer index_3">
-			<img src="img/3-title.png" width="182" height="28" alt="">
-		</div>
-		<div class="w-parallaximus-layer index_4">
-			<img src="img/4-price.png" width="120" height="120" alt="">
-		</div>
+		
 	</div>
-
-	<h2>Try it on mobile device:</h2>
-	<p><img src="img/QRCode.png" width="280" height="280" alt=""></p>
-
+	<div class="l-canvas-middle">
+		<h2>Try it on mobile device:</h2>
+		<p><img src="img/QRCode.png" width="280" height="280" alt=""></p>
+	</div>
+	</div>
 </body>
 </html>
