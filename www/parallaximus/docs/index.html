@@ -129,7 +129,7 @@ window.addEvent('domready', function(){
 					<p>To each layer:</p>
 
 					<p>(Note that layers should be bigger than widget itself. How to choose layer size?
-						The main rule: the bigger the layer the closer it is to viewer).</p>
+						The main rule: the closer the layer to us, the bigger it should be).</p>
 
 <pre><code>.w-parallaximus-layer.index_1 {
 	width: 400px;
@@ -139,6 +139,21 @@ window.addEvent('domready', function(){
 		left: 20px;
 		top: 30px;
 		}</code></pre>
+
+					<p>7. Choose the way you widget resizes by adding or removing container classes <span class="code">width_fixed</span> and
+						<span class="code">height_fixed</span></p>
+
+					<p>Fixed width and height (<a href="../demos/TravelAgency/" target="_blank">example</a>):</p>
+
+<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;</code></pre>
+
+					<p>Responsive width with fixed height (<a href="../demos/BestOffer/" target="_blank">example</a>):</p>
+
+<pre><code>&lt;div class="w-parallaximus height_fixed"&gt;</code></pre>
+
+					<p>Responsive width and height (<a href="../demos/Testimonials/" target="_blank">example</a>):</p>
+
+<pre><code>&lt;div class="w-parallaximus"&gt;</code></pre>
 
 					<h2>Options</h2>
 

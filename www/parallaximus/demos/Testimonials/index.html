@@ -16,18 +16,21 @@
 			text-align: center;
 			}
 		.l-canvas-top {
-			width: 960px;
+			/*width: 960px;*/
 			margin: 0 auto 20px;
-			padding: 75px 0 0 60px;
-			height: 530px;
-			background: url(img/window2.png) no-repeat 0 0;
+			background: url(img/l-canvas-top.png) 0 0 no-repeat;
 			}
+			.l-canvas-top-h {
+				padding: 75px 60px 0 60px;
+				height: 530px;
+				background: url(img/l-canvas-top-h.png) 100% 0 no-repeat;
+				}
 		.l-canvas-middle {
 			width: auto;
 			}
 		.w-parallaximus {
 			width: 900px;
-			max-width: 900px !important;
+			/*max-width: 900px !important;*/
 			height: 300px;
 			background: url(img/0-background.jpg);
 			}
@@ -93,31 +96,33 @@
 <body>
 	<div class="l-canvas">
 		<div class="nav">
-			<a class="nav-link" href="demos/ProductSale/">Product sale<br /><span>vertical</span></a>
-			<a class="nav-link" href="demos/TravelAgency/">Travel agency<br /><span>vertical</span></a>
-			<a class="nav-link" href="demos/BestOffer/">Best offer<br /><span>horizontal responsive</span></a>
-			<a class="nav-link active" href="demos/Testimonials/">Testimonials<br /><span>horizontal responsive with&nbsp;fixed height</span></a>
+			<a class="nav-link" href="../ProductSale/">Product sale<br /><span>vertical</span></a>
+			<a class="nav-link" href="../TravelAgency/">Travel agency<br /><span>vertical</span></a>
+			<a class="nav-link" href="../BestOffer/">Best offer<br /><span>horizontal responsive</span></a>
+			<a class="nav-link active" href="../Testimonials/">Testimonials<br /><span>horizontal responsive with&nbsp;fixed height</span></a>
 		</div>
 		<div class="l-canvas-top">
+			<div class="l-canvas-top-h">
 
-			<div class="w-parallaximus height_fixed">
-				<div class="w-parallaximus-layer index_1">
-					<img src="img/1-testimonial.png" width="508" height="143" alt="">
+				<div class="w-parallaximus height_fixed">
+					<div class="w-parallaximus-layer index_1">
+						<img src="img/1-testimonial.png" width="508" height="143" alt="">
+					</div>
+					<div class="w-parallaximus-layer index_2">
+						<img src="img/2-readmore.png" width="469" height="24" alt="">
+					</div>
+					<div class="w-parallaximus-layer index_3">
+						<img src="img/3-badge1.png" width="170" height="170" alt="">
+					</div>
+					<div class="w-parallaximus-layer index_4">
+						<img src="img/4-badge2.png" width="169" height="171" alt="">
+					</div>
+					<div class="w-parallaximus-layer index_5">
+						<img src="img/5-badge3.png" width="170" height="171" alt="">
+					</div>
 				</div>
-				<div class="w-parallaximus-layer index_2">
-					<img src="img/2-readmore.png" width="469" height="24" alt="">
-				</div>
-				<div class="w-parallaximus-layer index_3">
-					<img src="img/3-badge1.png" width="170" height="170" alt="">
-				</div>
-				<div class="w-parallaximus-layer index_4">
-					<img src="img/4-badge2.png" width="169" height="171" alt="">
-				</div>
-				<div class="w-parallaximus-layer index_5">
-					<img src="img/5-badge3.png" width="170" height="171" alt="">
-				</div>
-			</div>
 			
+			</div>
 		</div>
 		<div class="l-canvas-middle">
 			<h2>Try it on mobile device:</h2>

@@ -180,7 +180,7 @@
 					coord = [(45 - gamma) / 90, (45 - beta) / 90];
 					break;
 			}
-			that.container.stop(true, true);
+			this.container.stop(true, true);
 			this.set(coord);
 		},
 
