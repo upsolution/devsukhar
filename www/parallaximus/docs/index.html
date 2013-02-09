@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="en-US" xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -10,6 +10,13 @@
 <div class="l-canvas">
 	<div class="l-canvas-h">
 
+		<div class="l-sidebar">
+			<div class="w-toggler">
+				<span class="w-toggler-title">I shall use:</span>
+				<a class="w-toggler-option" href="#">jQuery</a>
+				<a class="w-toggler-option" href="#">MooTools</a>
+			</div>
+		</div>
 
 		<div class="l-content">
 			<div class="l-content-h">
@@ -20,7 +27,62 @@
 
 					<h2>Basic usage</h2>
 
-					<p>1. Upload <spa</p>
+					<p>1. Upload <span class="code">parallaximus</span> folder to your server.</p>
+
+					<p>2. Include basic Parallaximus styles <strong>before your main page styles</strong>:</p>
+
+<pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
+&lt;!-- (should be inserted before specific widget styles to be overloaded) --&gt;
+&lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;</code></pre>
+
+					<p>3a. For <strong>jQuery version</strong> of Parallaximus (not MooTools), include this scripts:</p>
+
+<pre><code>&lt;!-- Parallaximus requires JQuery 1.7+ --&gt;
+&lt;!-- Note: if you already have jQuery at this moment, you shouldn't include it once more. --&gt;
+&lt;script type="text/javascript" src="parallaximus/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
+&lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;</code></pre>
+
+					<p>3b. For <strong>MooTools version</strong> of Parallaximus (not jQuery), include this scripts:</p>
+
+<pre><code>&lt;!-- Parallaximus requires MooTools 1.4+ --&gt;
+&lt;!-- Note: if you already have MooTools at this moment, you shouldn't include it once more. --&gt;
+&lt;script type="text/javascript" src="parallaximus/mootools-core-1.4.5-full-nocompat-yc.js"&gt;&lt;/script&gt;
+
+&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
+&lt;script type="text/javascript" src="parallaximus/mootools.parallaximus.min.js"&gt;&lt;/script&gt;</code></pre>
+
+					<p>4. Add the parallaximus HTML code to the <span class="code">body</span> section.
+						The easiest way to do it is to copy one of attached demos html.<br>
+						Layers should be placed as the child elements of main container, all original classes should be preserved.<br>
+						Each layer can contain several images.<br>
+					Note: you need to fill images' widths and heights.</p>
+
+<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;
+	&lt;div class="w-parallaximus-layer index_1"&gt;
+		&lt;img src="image.png" width="165" height="219" alt=""&gt;
+	&lt;/div&gt;
+	&lt;div class="w-parallaximus-layer index_2"&gt;
+		&lt;img src="image.png" width="130" height="42" alt=""&gt;
+	&lt;/div&gt;
+	&lt;div class="w-parallaximus-layer index_3"&gt;
+		&lt;img src="image.png" width="182" height="28" alt=""&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+					<p>5. Initialize the widget (usually at the end of the <span class="code">body</span> section).
+						For settings list, check <a href="#options">options</a> section</p>
+
+<pre><code>&lt;script&gt;
+jQuery(document).ready(function($){
+	$('.w-parallaximus').parallaximus({
+		// options are located here
+		// for example: set return-effect duration to 5 seconds
+		duration: 5000
+	});
+});
+&lt;/script&gt;</code></pre>
 
 					<h2>Preparing layers</h2>
 
