@@ -1,0 +1,90 @@
+/*@import "ptsans/ptsans.css";*/
+
+body {
+	/*font-family: "PTSans", Tahoma, sans-serif;*/
+	font-size: 14px;
+	line-height: 20px;
+	}
+
+.g-html h1,
+.g-html h2,
+.g-html h3 {
+	margin-bottom: 25px;
+	}
+.g-html p,
+.g-html code,
+.g-html ol,
+.g-html ul {
+	margin-bottom: 15px;
+	}
+.g-html a {
+	color: #00008b;
+	text-decoration: underline;
+	}
+	.g-html a:hover {
+		text-decoration: none;
+		}
+.g-html span.code {
+	background: #eee;
+	padding: 2px 3px;
+	font-family: monospace;
+	}
+
+.l-header {
+	position: fixed;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	background-color: #EEE;
+	border-bottom: 1px #000 solid;
+	}
+	.l-header-h {
+		width: 960px;
+		margin: 0 auto;
+		}
+		.l-header-h:before,
+		.l-header-h:after {
+			display: table;
+			content: "";
+			}
+			.l-header-h:after {
+				clear: both;
+				}
+
+.w-contents {
+	float: left;
+	}
+	.w-contents-link {
+		color: #000;
+		text-decoration: underline;
+		padding-right: 20px;
+		}
+		.w-contents-link:hover {
+			text-decoration: none;
+			}
+.w-toggler {
+	float: right;
+	}
+	.w-toggler-title {
+		color: #777;
+		}
+	.w-toggler-option {
+		padding: 0 3px;
+		color: #000;
+		text-decoration: underline;
+		}
+		.w-toggler-option:hover {
+			text-decoration: none;
+			}
+		.w-toggler-option.active {
+			font-weight: bold;
+			}
+
+.l-canvas {
+	padding-top: 50px;
+	}
+	.l-canvas-h {
+		width: 960px;
+		margin: 0 auto;
+		padding: 40px 0;
+		}
