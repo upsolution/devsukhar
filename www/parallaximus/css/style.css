@@ -244,7 +244,7 @@ ol {
 		display: inline-block;
 		position: relative;
 		font-size: 16px;
-		padding: 6px 10px;
+		padding: 7px 10px;
 		border: none;
 		margin-right: 10px;
 		border-radius: 2px;
@@ -278,7 +278,7 @@ ol {
 				display: block;
 				content: "";
 				position: absolute;
-				top: -4px;
+				top: -3px;
 				left: 50%;
 				margin-left: -5px;
 				width: 10px;
@@ -290,7 +290,7 @@ ol {
 				}
 		.nav-link:hover span {
 			opacity: 1;
-			top: 120%;
+			top: 100%;
 			}
 		.nav-link.active span {
 			display: none !important;
