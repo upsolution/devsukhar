@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Parallaximus Example #1</title>
+	<title>Parallaximus Example #2</title>
 
 	<style type="text/css">
 		/*
@@ -21,41 +21,49 @@
 		/*
 		 *********** Current example styles **************/
 		.w-parallaximus {
-			width: 240px;
-			height: 400px;
+			width: 900px;
+			height: 300px;
 			background: url(img/0-background.jpg);
 			}
 			.w-parallaximus-layer.index_1 {
-				width: 250px;
-				height: 410px;
+				width: 940px;
+				height: 320px;
 				}
 				.w-parallaximus-layer.index_1 > img {
-					left: 20px;
-					top: 100px;
+					left: 370px;
+					top: 55px;
 					}
 			.w-parallaximus-layer.index_2 {
-				width: 260px;
-				height: 420px;
+				width: 980px;
+				height: 340px;
 				}
 				.w-parallaximus-layer.index_2 > img {
-					left: 65px;
-					top: 340px;
+					left: 410px;
+					top: 250px;
 					}
 			.w-parallaximus-layer.index_3 {
-				width: 270px;
-				height: 430px;
+				width: 1020px;
+				height: 360px;
 				}
 				.w-parallaximus-layer.index_3 > img {
-					left: 43px;
-					top: 50px;
+					left: 90px;
+					top: 60px;
 					}
 			.w-parallaximus-layer.index_4 {
-				width: 280px;
-				height: 440px;
+				width: 1120px;
+				height: 380px;
 				}
 				.w-parallaximus-layer.index_4 > img {
-					left: 125px;
-					top: 225px;
+					left: 200px;
+					top: 105px;
+					}
+			.w-parallaximus-layer.index_5 {
+				width: 1220px;
+				height: 400px;
+				}
+				.w-parallaximus-layer.index_5 > img {
+					left: 310px;
+					top: 150px;
 					}
 	</style>
 
@@ -66,8 +74,7 @@
 		jQuery(document).ready(function($){
 			$('.w-parallaximus').parallaximus({
 				perspective: 75,
-				duration: 5000,
-				link: '../../'
+				duration: 5000
 			});
 		});
 	</script>
@@ -75,20 +82,26 @@
 </head>
 <body>
 
-	<div class="w-parallaximus width_fixed height_fixed">
+	<div class="w-parallaximus height_fixed">
 		<div class="w-parallaximus-layer index_1">
-			<img src="img/1-product.png" width="165" height="219" alt="">
+			<img src="img/1-testimonial.png" width="508" height="143" alt="">
 		</div>
 		<div class="w-parallaximus-layer index_2">
-			<img src="img/2-text.png" width="130" height="42" alt="">
+			<img src="img/2-readmore.png" width="469" height="24" alt="">
 		</div>
 		<div class="w-parallaximus-layer index_3">
-			<img src="img/3-title.png" width="182" height="28" alt="">
+			<img src="img/3-badge1.png" width="170" height="170" alt="">
 		</div>
 		<div class="w-parallaximus-layer index_4">
-			<img src="img/4-price.png" width="120" height="120" alt="">
+			<img src="img/4-badge2.png" width="169" height="171" alt="">
+		</div>
+		<div class="w-parallaximus-layer index_5">
+			<img src="img/5-badge3.png" width="170" height="171" alt="">
 		</div>
 	</div>
+
+	<h2>Try it on mobile device:</h2>
+	<p><img src="img/QRCode.png" width="280" height="280" alt=""></p>
 
 </body>
 </html>

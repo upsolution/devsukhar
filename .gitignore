@@ -1,4 +1,5 @@
 .idea
+tmp
 products/*/.idea
 website/.idea
 website/*/.idea
