@@ -1,0 +1,12 @@
+/*
+ ********** Common parallaximus styles ***********/
+.w-parallaximus {
+	position: relative;
+	overflow: hidden;
+	}
+	.w-parallaximus-layer {
+		position: absolute;
+		}
+		.w-parallaximus-layer > img {
+			position: absolute;
+			}

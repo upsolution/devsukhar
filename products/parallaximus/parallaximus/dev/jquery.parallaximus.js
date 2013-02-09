@@ -365,5 +365,5 @@
 
 // Auto init
 jQuery(document).ready(function($){
-	$('.w-parallaximus.i-autoinit').parallaximus();
+	jQuery('.w-parallaximus.i-autoinit').parallaximus();
 });

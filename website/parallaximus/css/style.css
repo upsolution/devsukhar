@@ -33,7 +33,10 @@ a {
 		}
 		
 /* typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	font-family: Trebuchet ms,Tahoma,sans-serif;
 	font-weight: 200;
 	}
@@ -96,123 +99,124 @@ ol {
 	background: linear-gradient(to right,  #6b8fb2 0%,#99b2cc 50%,#6b8fb2 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b8fb2', endColorstr='#6b8fb2',GradientType=1 ); /* IE6-9 */
 	}
-.l-canvas-middle {
-	margin: 0 auto;
-	width: 800px;
-	padding: 0 0 60px;
-	}
+	.l-canvas-middle {
+		margin: 0 auto;
+		width: 800px;
+		padding: 0 0 60px;
+		}
+
 .w-parallaximus {
+	width: 800px;
 	height: 400px;
-	max-width: 1400px;
+	/*max-width: 1400px;*/
 	min-width: 800px;
 	position: relative;
 	margin: 0 auto;
 	overflow: hidden;
 	}
-.w-parallaximus-layer {
-    position: absolute;
-	}
-.w-parallaximus-layer.index_1 {
-	height: 450px;
-	width: 1100px;
-	}
-.w-parallaximus-layer.index_2 {
-	height: 500px;
-	width: 1200px;
-	}
-.w-parallaximus-layer.index_3 {
-	height: 550px;
-	width: 1300px;
-	}
-.w-parallaximus-layer.index_4 {
-	height: 600px;
-	width: 1400px;
-	}
-.w-parallaximus-layer.index_5 {
-	height: 650px;
-	width: 1500px;
-	}
-.w-parallaximus-layer.index_6 {
-	height: 700px;
-	width: 1600px;
-	}
-
-.w-parallaximus-layer img {
-    position: absolute;
-	}
-.w-parallaximus-layer.index_1 > img {
-    left: 468px;
-	top: 180px;
-	}
-.w-parallaximus-layer.index_2 > img {
-    left: 710px;
-	top: 205px;
-	}
-.w-parallaximus-layer.index_3 > img {
-    left: 468px;
-	top: 230px;
-	}
-.w-parallaximus-layer.index_4 > img {
-    left: 700px;
-	top: 255px;
-	}
-.w-parallaximus-layer.index_5 > img {
-    left: 468px;
-	top: 280px;
-	}
-.w-parallaximus-layer.index_6 > img {
-    left: 1008px;
-	top: 305px;
-	}
+	.w-parallaximus-layer {
+		position: absolute;
+		}
+		.w-parallaximus-layer img {
+			position: absolute;
+			}
+		.w-parallaximus-layer.index_1 {
+			height: 450px;
+			width: 1100px;
+			}
+			.w-parallaximus-layer.index_1 > img {
+				left: 468px;
+				top: 180px;
+				}
+		.w-parallaximus-layer.index_2 {
+			height: 500px;
+			width: 1200px;
+			}
+			.w-parallaximus-layer.index_2 > img {
+				left: 710px;
+				top: 205px;
+				}
+		.w-parallaximus-layer.index_3 {
+			height: 550px;
+			width: 1300px;
+			}
+			.w-parallaximus-layer.index_3 > img {
+				left: 468px;
+				top: 230px;
+				}
+		.w-parallaximus-layer.index_4 {
+			height: 600px;
+			width: 1400px;
+			}
+			.w-parallaximus-layer.index_4 > img {
+				left: 700px;
+				top: 255px;
+				}
+		.w-parallaximus-layer.index_5 {
+			height: 650px;
+			width: 1500px;
+			}
+			.w-parallaximus-layer.index_5 > img {
+				left: 468px;
+				top: 280px;
+				}
+		.w-parallaximus-layer.index_6 {
+			height: 700px;
+			width: 1600px;
+			}
+			.w-parallaximus-layer.index_6 > img {
+				left: 1008px;
+				top: 305px;
+				}
 
 .l-examples {
 	font-size: 0;
 	margin: 0 0 20px;
 	padding: 0;
 	}
-.l-example {
-	display: inline-block;
-	width: 48.5%;
-	margin-right: 3%;
-	margin-bottom: 3%;
-	vertical-align: top;
-	font-size: 22px;
-	line-height: 22px;
-	*display: inline;
-	}
-	.l-example a {
-		display: block;
-		background: rgba(255,255,255,0.2);
-		box-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.25) inset;
-		border-radius: 5px;
-		padding: 20px 30px 15px;
-		text-align: center;
-		text-shadow: 0 1px 0 rgba(255,255,255,0.25)
+	.l-example {
+		display: inline-block;
+		width: 48.5%;
+		margin-right: 3%;
+		margin-bottom: 3%;
+		vertical-align: top;
+		font-size: 22px;
+		line-height: 22px;
+		*display: inline;
 		}
-		.l-example a:hover {
-			background: rgba(255,255,255,0.5);
+		.l-example a {
+			display: block;
+			background: rgba(255,255,255,0.2);
+			box-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.25) inset;
+			border-radius: 5px;
+			padding: 20px 30px 15px;
+			text-align: center;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.25)
 			}
+			.l-example a:hover {
+				background: rgba(255,255,255,0.5);
+				}
+			.l-example a > span {
+				font-size: 13px;
+				}
 		.l-example:nth-child(2n) {
 			margin-right: 0;
-			}
-		.l-example a span {
-			font-size: 13px;
 			}
 
 .l-tabs {
 	font-size: 0;
 	}
-.l-tab {
-	display: inline-block;
-	width: 30%;
-	margin-right: 5%;
-	margin-bottom: 20px;
-	vertical-align: top;
-	*display: inline;
-	}
-.l-tab:hover {
-	color: #000;
-	}
-.l-tab:nth-child(3n) {
-	margin-right: 0;
-	}
+	.l-tab {
+		display: inline-block;
+		width: 30%;
+		margin-right: 5%;
+		margin-bottom: 20px;
+		vertical-align: top;
+		*display: inline;
+		}
+		.l-tab:hover {
+			color: #000;
+			}
+	.l-tab:nth-child(3n) {
+		margin-right: 0;
+		}

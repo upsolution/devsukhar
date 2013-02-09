@@ -67,16 +67,22 @@
 					}
 	</style>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<script type="text/javascript" src="../../js/Parallaximus.jQuery.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.parallaximus.min.js"></script>
 
-	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>-->
-	<!--<script type="text/javascript" src="../../js/Parallaximus.MooTools.js"></script>-->
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.w-parallaximus').parallaximus({
+				perspective: 75,
+				duration: 5000
+			});
+		});
+	</script>
 
 </head>
 <body>
 
-	<div class="w-parallaximus height_fixed i-autoinit" onclick="return {perspective: 75, duration: 5000}">
+	<div class="w-parallaximus height_fixed">
 		<div class="w-parallaximus-layer index_1">
 			<img src="img/1-testimonial.png" width="508" height="143" alt="">
 		</div>
@@ -93,8 +99,6 @@
 			<img src="img/5-badge3.png" width="170" height="171" alt="">
 		</div>
 	</div>
-
-	<!--<div id="debug"></div>-->
 
 </body>
 </html>

@@ -59,14 +59,23 @@
 					}
 	</style>
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
-	<script type="text/javascript" src="../../js/Parallaximus.MooTools.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.parallaximus.min.js"></script>
 
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.w-parallaximus').parallaximus({
+				perspective: 75,
+				duration: 5000,
+				link: '../../'
+			});
+		});
+	</script>
 
 </head>
 <body>
 
-	<div class="w-parallaximus width_fixed height_fixed i-autoinit" onclick="return {perspective: 75, duration: 5000, link: '/parallaximus/'}">
+	<div class="w-parallaximus width_fixed height_fixed">
 		<div class="w-parallaximus-layer index_1">
 			<img src="img/1-product.png" width="165" height="219" alt="">
 		</div>
@@ -80,8 +89,6 @@
 			<img src="img/4-price.png" width="120" height="120" alt="">
 		</div>
 	</div>
-
-	<!--<div id="debug"></div>-->
 
 </body>
 </html>
