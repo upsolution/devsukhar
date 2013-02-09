@@ -2,24 +2,13 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Parallaximus Example #1</title>
+	<title>Parallaximus ProductSale demo (vertical)</title>
 
+	<!-- Basic Parallaximus styles -->
+	<link rel="stylesheet" type="text/css" href="../../css/parallaximus.css" media="all">
+
+	<!-- Current demo styles -->
 	<style type="text/css">
-		/*
-		 ********** Common parallaximus styles ***********/
-		.w-parallaximus {
-			position: relative;
-			overflow: hidden;
-			}
-			.w-parallaximus-layer {
-				position: absolute;
-				}
-				.w-parallaximus-layer > img {
-					position: absolute;
-					}
-
-		/*
-		 *********** Current example styles **************/
 		.w-parallaximus {
 			width: 240px;
 			height: 400px;
@@ -59,9 +48,13 @@
 					}
 	</style>
 
+	<!-- Parallaximus requres JQuery 1.7+ -->
 	<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+
+	<!-- Main Parallaximus script (should be placed after Parallaximus styles definition) -->
 	<script type="text/javascript" src="../../js/jquery.parallaximus.min.js"></script>
 
+	<!-- Initialize Parallaximus -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($){
 			$('.w-parallaximus').parallaximus({
