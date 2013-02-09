@@ -6,16 +6,32 @@
 
 	<!-- Basic Parallaximus styles -->
 	<link rel="stylesheet" type="text/css" href="../../css/parallaximus.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
 
 	<!-- Current demo styles -->
 	<style type="text/css">
 		.l-canvas {
-			width: 80%;
+			padding: 40px 0;
+			text-align: center;
+			}
+		.l-canvas-middle {
+			width: auto;
+			}
+		.w-parallaximus-shadow {
+			width: 100%;
+			max-width: 1300px;
 			margin: 0 auto;
+			}
+		.w-parallaximus-shadow img {
+			display: block;
+			width: 100%;
 			}
 		.w-parallaximus {
 			width: 1400px;
+			max-width: 1400px !important;
 			height: 700px;
+			margin: 0 auto;
 			background: url(img/0-background.jpg);
 			}
 			.w-parallaximus-layer.index_1 {
@@ -23,16 +39,16 @@
 				height: 740px;
 				}
 				.w-parallaximus-layer.index_1 > img {
-					left: 161px;
-					top: 331px;
+					left: 160px;
+					top: 330px;
 					}
 			.w-parallaximus-layer.index_2 {
 				width: 1560px;
 				height: 780px;
 				}
 				.w-parallaximus-layer.index_2 > img {
-					left: 201px;
-					top: 481px;
+					left: 200px;
+					top: 480px;
 					}
 			.w-parallaximus-layer.index_3 {
 				width: 1640px;
@@ -83,18 +99,18 @@
 
 </head>
 <body>
-
 	<div class="l-canvas">
+	<div class="l-canvas-top">
 
 		<div class="w-parallaximus">
 			<div class="w-parallaximus-layer index_1">
-				<img src="img/1-slogan1.png" width="470" height="64" alt="">
+				<img src="img/1-slogan1.png" width="359" height="60" alt="">
 			</div>
 			<div class="w-parallaximus-layer index_2">
-				<img src="img/2-slogan3.png" width="279" height="64" alt="">
+				<img src="img/2-slogan3.png" width="336" height="60" alt="">
 			</div>
 			<div class="w-parallaximus-layer index_3">
-				<img src="img/3-slogan2.png" width="483" height="64" alt="">
+				<img src="img/3-slogan2.png" width="422" height="60" alt="">
 			</div>
 			<div class="w-parallaximus-layer index_4">
 				<img class="index_41" src="img/4-image1.png" width="617" height="408" alt="">
@@ -104,11 +120,15 @@
 				<img src="img/5-title.png" width="509" height="54" alt="">
 			</div>
 		</div>
-
+		
+		<div class="w-parallaximus-shadow">
+			<img src="img/shadow.png" alt="">
+		</div>
+	</div>
+	<div class="l-canvas-middle">
 		<h2>Try it on mobile device:</h2>
 		<p><img src="img/QRCode.png" width="280" height="280" alt=""></p>
-
 	</div>
-
+	</div>
 </body>
 </html>
