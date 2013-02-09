@@ -21,7 +21,6 @@ body {
 	
 a {
 	color: #2f6b99;
-	text-decoration: none;
 	border-bottom: 1px solid #5d8eb4;
 	-webkit-transition: all 0.2s ease;
 	   -moz-transition: all 0.2s ease;
@@ -37,7 +36,7 @@ a {
 	a:active,
 	a:focus {
 		color: black;
-		border-bottom: 1px solid #444;
+		border-color: #444;
 		}
 		
 /* typography */
@@ -179,7 +178,8 @@ ol {
 			border-radius: 5px;
 			padding: 20px 30px 15px;
 			text-align: center;
-			text-shadow: 0 1px 0 rgba(255,255,255,0.25)
+			text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+			text-decoration: none;
 			}
 			.l-example a:hover {
 				background: rgba(255,255,255,0.5);
@@ -208,3 +208,90 @@ ol {
 	.l-tab:nth-child(3n) {
 		margin-right: 0;
 		}
+		
+.l-order {
+	text-align: center;
+	padding: 20px 0;
+	}
+	.l-order-btn {
+		display: inline-block;
+		padding: 15px 40px;
+		border: none;
+		text-decoration: none;
+		background: #ffbf00;
+		font-size: 24px;
+		color: #333 !important;
+		border-radius: 5px;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.3), 0 1px 1px rgba(255,255,255,0.6) inset;
+		*display: inline;
+		}
+		.l-order-btn:hover {
+			background: #fc3;
+			color: #000 !important;
+			}
+		.l-order-btn:active {
+			background: #fc3;
+			color: #000 !important;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset;
+			}
+		
+.nav {
+	font-size: 0;
+	text-align: center;
+	margin: 0 auto 30px;
+	}
+	.nav-link {
+		display: inline-block;
+		position: relative;
+		font-size: 16px;
+		padding: 6px 10px;
+		border: none;
+		margin-right: 10px;
+		border-radius: 2px;
+		*display: inline;
+		}
+		.nav-link.active {
+			color: #000;
+			text-decoration: none;
+			cursor: default;
+			background: rgba(255,255,255,0.3);
+			}
+		.nav-link span {
+			display: block;
+			position: absolute;
+			top: 80%;
+			opacity: 0;
+			left: 50%;
+			margin-left: -50px;
+			width: 80px;
+			z-index: 5000;
+			background: #333;
+			padding: 7px 10px;
+			color: #fff;
+			font-size: 12px;
+			border-radius: 2px;
+			-webkit-transition: all 0.3s ease;
+			    -ms-transition: all 0.3s ease;
+			        transition: all 0.3s ease;
+			}
+			.nav-link span::after {
+				display: block;
+				content: "";
+				position: absolute;
+				top: -4px;
+				left: 50%;
+				margin-left: -5px;
+				width: 10px;
+				height: 10px;
+				background: #333;
+				-webkit-transform: rotate(45deg);
+				    -ms-transform: rotate(45deg);
+				        transform: rotate(45deg);
+				}
+		.nav-link:hover span {
+			opacity: 1;
+			top: 120%;
+			}
+		.nav-link.active span {
+			display: none !important;
+			}
