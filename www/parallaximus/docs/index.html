@@ -10,6 +10,10 @@
 
 	<script type="text/javascript" src="js/highlight.js/highlight.pack.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+
+	<script type="text/javascript" src="js/mootools-core-1.4.5-full-nocompat-yc.js"></script>
+	<script type="text/javascript" src="js/mootools-more-1.4.0.1.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 
@@ -24,8 +28,8 @@
 
 		<div class="w-toggler">
 			<span class="w-toggler-title">I prefer:</span>
-			<a class="w-toggler-option active" href="#">jQuery</a>
-			<a class="w-toggler-option" href="#">MooTools</a>
+			<a class="w-toggler-option active" href="javascript:void(0)">jQuery</a>
+			<a class="w-toggler-option" href="javascript:void(0)">MooTools</a>
 		</div>
 
 	</div>
@@ -41,7 +45,7 @@
 
 					<h1>Parallaximus Documentation</h1>
 
-					<h2>Basic usage</h2>
+					<h2 id="basics">Basic usage</h2>
 
 					<p>1. Upload <span class="code">parallaximus</span> folder to your server.</p>
 
@@ -51,7 +55,8 @@
 &lt;!-- (should be inserted before specific widget styles to be overloaded) --&gt;
 &lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;</code></pre>
 
-					<p>3a. For <strong>jQuery version</strong> (<a href="#">click for MooTools</a>) include this scripts:<br></p>
+					<div class="i-version version_jquery">
+						<p>3. For <strong>jQuery version</strong> (<a href="javascript:docVersion.show('mootools')">click for MooTools</a>) include this scripts:<br></p>
 
 <pre><code>&lt;!-- Parallaximus requires JQuery 1.7+ --&gt;
 &lt;!-- Note: if you already have jQuery at this moment, you shouldn't include it once more. --&gt;
@@ -59,8 +64,10 @@
 
 &lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
 &lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;</code></pre>
+					</div>
 
-					<p>3b. For <strong>MooTools version</strong> (<a href="#">click for jQuery</a>) include this scripts:</p>
+					<div class="i-version version_mootools">
+						<p>3. For <strong>MooTools version</strong> (<a href="javascript:docVersion.show('jquery')">click for jQuery</a>) include this scripts:</p>
 
 <pre><code>&lt;!-- Parallaximus requires MooTools 1.4+ --&gt;
 &lt;!-- Note: if you already have MooTools at this moment, you shouldn't include it once more. --&gt;
@@ -68,12 +75,13 @@
 
 &lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
 &lt;script type="text/javascript" src="parallaximus/mootools.parallaximus.min.js"&gt;&lt;/script&gt;</code></pre>
+					</div>
 
 					<p>4. Add the parallaximus HTML code to the <span class="code">body</span> section.
 						The easiest way to do it is to copy one of attached demos html.<br>
-						Layers should be placed as the child elements of main container, all original classes should be preserved.<br>
-						Each layer can contain several images.<br>
-					Note: you need to fill images' widths and heights.</p>
+						Layers should be placed as the child elements of main container, all original class names should be preserved.<br>
+						Each layer can contain one or several images.<br>
+					Note: you need to enter images' widths and heights.</p>
 
 <pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;
 	&lt;div class="w-parallaximus-layer index_1"&gt;
@@ -87,9 +95,10 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-					<p>5a. For <strong>jQuery version</strong> (<a href="#">click for MooTools</a>) initialize the widget
-						(usually at the end of the <span class="code">body</span> section).<br>
-						For settings list, check <a href="#options">options</a> section</p>
+					<div class="i-version version_jquery">
+						<p>5. For <strong>jQuery version</strong> (<a href="javascript:docVersion.show('mootools')">click for MooTools</a>)
+							initialize the widget (usually at the end of the <span class="code">body</span> section).<br>
+							For settings list, check <a href="#options">options</a> section</p>
 
 <pre><code>&lt;script&gt;
 jQuery(document).ready(function($){
@@ -100,10 +109,12 @@ jQuery(document).ready(function($){
 	});
 });
 &lt;/script&gt;</code></pre>
+					</div>
 
-					<p>5b. For <strong>MooTools version</strong> (<a href="#">click for jQuery</a>) initialize the widget
-						(usually at the end of the <span class="code">body</span> section).<br>
-						For settings list, check <a href="#options">options</a> section</p>
+					<div class="i-version version_mootools">
+						<p>5. For <strong>MooTools version</strong> (<a href="javascript:docVersion.show('jquery')">click for jQuery</a>) initialize the widget
+							(usually at the end of the <span class="code">body</span> section).<br>
+							For settings list, check <a href="#options">options</a> section</p>
 
 <pre><code>&lt;script&gt;
 window.addEvent('domready', function(){
@@ -114,6 +125,7 @@ window.addEvent('domready', function(){
 	});
 });
 &lt;/script&gt;</code></pre>
+					</div>
 
 					<p>6. Apply sizes to widget and layers using CSS.</p>
 
@@ -128,7 +140,7 @@ window.addEvent('domready', function(){
 
 					<p>To each layer:</p>
 
-					<p>(Note that layers should be bigger than widget itself. How to choose layer size?
+					<p>(Note that layers usually should be bigger than the widget itself. How to choose layer size?
 						The main rule: the closer the layer to us, the bigger it should be).</p>
 
 <pre><code>.w-parallaximus-layer.index_1 {
@@ -155,9 +167,93 @@ window.addEvent('domready', function(){
 
 <pre><code>&lt;div class="w-parallaximus"&gt;</code></pre>
 
-					<h2>Options</h2>
+					<h2 id="options">Options</h2>
 
-					<h2>API</h2>
+					<table>
+						<thead>
+						<tr>
+							<td width="200">Variable</td>
+							<td width="200">Default value</td>
+							<td>Description</td>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td><span class="code">angleXRange</span></td>
+							<td>10</td>
+							<td>Range of horisontal rotation for the nearest layer (more distant layers are rotated at a smaller angle).</td>
+						</tr>
+						<tr>
+							<td><span class="code">angleYRange</span></td>
+							<td>10</td>
+							<td>Range of vertical rotation for the nearest layer (more distant layers are rotated at a smaller angle).</td>
+						</tr>
+						<tr>
+							<td><span class="code">basePoint</span></td>
+							<td>[.5, .5]</td>
+							<td>Point for basic position (when not controlled by mouse cursor). Can vary from [0, 0] to [1, 1]. [.5, .5] is the center of the widget.</td>
+						</tr>
+						<tr>
+							<td><span class="code">duration</span></td>
+							<td>2000</td>
+							<td>Returning-to-basepoint duration (in ms: 2000 = 2 seconds)</td>
+						</tr>
+						<tr>
+							<td><span class="code">fps</span></td>
+							<td>30</td>
+							<td>Frame per second limit for rendering (to reduce processor load for too frequent renders)</td>
+						</tr>
+						<tr>
+							<td><span class="code">link</span></td>
+							<td>false</td>
+							<td>Link for widget banner (when filled, parallaximus becomes clickable)</td>
+						</tr>
+						<tr>
+							<td><span class="code">perspective</span></td>
+							<td>400</td>
+							<td>Perspective of 3d effects</td>
+						</tr>
+						<tr>
+							<td><span class="code">resizeDelay</span></td>
+							<td>50</td>
+							<td>Resize delay to reduce resize event calls</td>
+						</tr>
+						<tr>
+							<td><span class="code">transition</span></td>
+							<td>
+								<div class="i-version version_jquery">'easeOutElastic'</div>
+								<div class="i-version version_mootools">Fx.Transitions.Elastic.easeOut</div>
+							</td>
+							<td>
+								<div class="i-version version_jquery">Returning-to-basepoint easing function (<a href="http://easings.net/en" target="_blank">read more about easings</a>)</div>
+								<div class="i-version version_mootools">Returning-to-basepoint transition function (<a href="http://mootools.net/docs/core/Fx/Fx.Transitions" target="_blank">read more about transitions</a>)</div>
+							</td>
+						</tr>
+						<tr>
+							<td><span class="code">use3d</span></td>
+							<td>true</td>
+							<td></td>
+						</tr>
+						</tbody>
+					</table>
+
+					<h2 id="api">API</h2>
+
+					<p>Obtain Parallaximus object:</p>
+
+					<div class="i-version version_jquery">
+<pre><code>var parallaximus = $('.w-parallaximus').data('parallaximus');</code></pre>
+					</div>
+					<div class="i-version version_mootools">
+<pre><code>var parallaximus = document.getElement('.w-parallaximus').retrieve('parallaximus');</code></pre>
+					</div>
+
+					<p>Public methods:</p>
+<pre><code>// Move position to certain point:
+parallaximus.set([.1, .1]);
+
+// Update position after manual container resize
+parallaximus.handleResize();</code></pre>
 
 				</div>
 

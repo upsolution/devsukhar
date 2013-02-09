@@ -95,10 +95,10 @@
 		if ( ! this.container.hasClass('width_fixed')){
 			$(window).resize(function(){
 				clearTimeout(this._resizeTimer);
-				this._resizeTimer = setTimeout(function(){that._handleResize();}, that.options.resizeDelay);
+				this._resizeTimer = setTimeout(function(){that.handleResize();}, that.options.resizeDelay);
 			});
 			this.container.css('width', '100%');
-			this._handleResize();
+			this.handleResize();
 		}
 		this._lastFrame = Date.now();
 	};
@@ -186,9 +186,8 @@
 
 		/**
 		 * Handle container resize
-		 * @private
 		 */
-		_handleResize: function(){
+		handleResize: function(){
 			this.curCntSz = {x: this.container.width(), y: this.container.height()};
 			var resizeRatio = this.curCntSz.x / this.baseCntSz.x,
 				resizeHeight = ! this.container.hasClass('height_fixed'),
@@ -309,7 +308,7 @@
 
 	$.fn.parallaximus.defaults = {
 		/**
-		 * @var {String} Link for
+		 * @var {String} Link for widget banner
 		 */
 		link: false,
 

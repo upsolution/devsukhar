@@ -13,7 +13,7 @@ var Parallaximus = new Class({
 	options: {
 
 		/**
-		 * @var {String} Link for
+		 * @var {String} Link for widget banner
 		 */
 		link: false,
 
@@ -137,10 +137,10 @@ var Parallaximus = new Class({
 		if ( ! this.container.hasClass('width_fixed')){
 			window.addEvent('resize', function(){
 				clearTimeout(this._resizeTimer);
-				this._resizeTimer = this._handleResize.delay(this.options.resizeDelay, this);
+				this._resizeTimer = this.handleResize.delay(this.options.resizeDelay, this);
 			}.bind(this));
 			this.container.setStyle('width', '100%');
-			this._handleResize();
+			this.handleResize();
 		}
 		this._lastFrame = Date.now();
 	},
@@ -218,9 +218,8 @@ var Parallaximus = new Class({
 
 	/**
 	 * Handle container resize
-	 * @private
 	 */
-	_handleResize: function()
+	handleResize: function()
 	{
 		this.curCntSz = this.container.getSize();
 		var resizeRatio = this.curCntSz.x / this.baseCntSz.x,
@@ -312,11 +311,23 @@ var Parallaximus = new Class({
 		return this;
 	},
 
+	/**
+	 * Step value computing function, read more at http://mootools.net/docs/core/Fx/Fx
+	 * @param {Array} from
+	 * @param {Array} to
+	 * @param {Number} delta
+	 * @return {Array}
+	 */
 	compute: function(from, to, delta)
 	{
 		return [(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]];
 	},
 
+	/**
+	 * Start animation to certain point
+	 * @param {Array} to
+	 * @return {Parallaximus}
+	 */
 	start: function(to)
 	{
 		this.parent(this.now, to);

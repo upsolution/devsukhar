@@ -8,13 +8,14 @@ body {
 
 .g-html h1,
 .g-html h2,
-.g-html h3 {
+.g-html h3,
+.g-html table  {
 	margin-bottom: 25px;
 	}
 .g-html p,
 .g-html code,
 .g-html ol,
-.g-html ul {
+.g-html ul{
 	margin-bottom: 15px;
 	}
 .g-html a {
@@ -29,6 +30,29 @@ body {
 	padding: 2px 3px;
 	font-family: monospace;
 	}
+.g-html table {
+	border-collapse: collapse;
+	width: 100%;
+	}
+	.g-html table > thead > tr > td,
+	.g-html table > tbody > tr > td {
+		padding: 4px 10px;
+		}
+	.g-html table > thead {
+		}
+		.g-html table > thead > tr {
+			}
+			.g-html table > thead > tr > td {
+				font-weight: bold;
+				}
+		.g-html table > tbody > tr {
+			}
+			.g-html table > tbody > tr > td {
+				border: 1px #ddd solid;
+				}
+				.g-html table > tbody > tr:hover > td {
+					background-color: #fafad2;
+					}
 
 .l-header {
 	position: fixed;
@@ -88,3 +112,7 @@ body {
 		margin: 0 auto;
 		padding: 40px 0;
 		}
+
+.i-version.version_mootools {
+	display: none;
+	}
