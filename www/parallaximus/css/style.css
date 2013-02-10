@@ -71,9 +71,9 @@ h3 {
 	}
 h4 {
 	margin: 0 0 15px;
-	color: #324150;
-	font-size: 18px;
-	line-height: 24px;
+	color: #405367;
+	font-size: 17px;
+	line-height: 26px;
 	}
 p {
 	margin: 0 0 15px;
@@ -106,8 +106,8 @@ ol {
 
 .sales-page .w-parallaximus {
 	height: 400px;
-	width: 800px;
-	/*max-width: 1400px;*/
+	width: auto;
+	max-width: 1400px;
 	min-width: 800px;
 	margin: 0 auto;
 	overflow: visible;
@@ -216,18 +216,22 @@ ol {
 		
 .l-order {
 	text-align: center;
-	padding: 20px 0;
+	padding: 30px 0;
+	background: rgba(255,255,255,0.2);
+	box-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.25) inset;
+	border-radius: 5px;
+	margin-top: 30px;
 	}
 	.l-order-btn,
 	.l-order-link {
 		display: inline-block;
 		padding: 15px 40px;
 		border: none;
-		color: #333 !important;
 		*display: inline;
 		}
 	.l-order-link {
 		text-decoration: underline;
+		font-size: 18px;
 		}
 		.l-order-link:hover {
 			text-decoration: none;
@@ -236,6 +240,7 @@ ol {
 		text-decoration: none;
 		background: #ffbf00;
 		font-size: 24px;
+		color: #333 !important;
 		border-radius: 5px;
 		box-shadow: 0 1px 1px rgba(0,0,0,0.3), 0 1px 1px rgba(255,255,255,0.6) inset;
 		}
