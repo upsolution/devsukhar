@@ -97,6 +97,8 @@ ol {
 
 .l-canvas-top {
 	overflow: hidden;
+	/*max-width: 1000px;*/
+	margin: 0 auto;
 	}
 .l-canvas-middle {
 	margin: 0 auto;
@@ -106,9 +108,9 @@ ol {
 
 .sales-page .w-parallaximus {
 	height: 400px;
-	width: auto;
-	max-width: 1400px;
-	min-width: 800px;
+	width: 800px;
+	/*max-width: 1400px;*/
+	/*min-width: 800px;*/
 	margin: 0 auto;
 	overflow: visible;
 	}
