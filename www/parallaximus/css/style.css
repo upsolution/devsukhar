@@ -94,6 +94,9 @@ ol {
 		line-height: 20px;
 		}
 
+.l-canvas-top {
+	overflow: hidden;
+	}
 .l-canvas-middle {
 	margin: 0 auto;
 	width: 800px;
@@ -106,6 +109,7 @@ ol {
 	/*max-width: 1400px;*/
 	min-width: 800px;
 	margin: 0 auto;
+	overflow: visible;
 	}
 	.sales-page .w-parallaximus-layer.index_1 {
 		height: 450px;
@@ -213,17 +217,23 @@ ol {
 	text-align: center;
 	padding: 20px 0;
 	}
-	.l-order-btn {
+	.l-order-btn,
+	.l-order-link {
 		display: inline-block;
 		padding: 15px 40px;
 		border: none;
+		color: #333 !important;
+		*display: inline;
+		}
+		.l-order-link:hover {
+			text-decoration: none;
+			}
+	.l-order-btn {
 		text-decoration: none;
 		background: #ffbf00;
 		font-size: 24px;
-		color: #333 !important;
 		border-radius: 5px;
 		box-shadow: 0 1px 1px rgba(0,0,0,0.3), 0 1px 1px rgba(255,255,255,0.6) inset;
-		*display: inline;
 		}
 		.l-order-btn:hover {
 			background: #fc3;

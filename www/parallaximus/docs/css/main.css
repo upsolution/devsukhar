@@ -81,11 +81,15 @@ body {
 	.w-contents-link {
 		color: #000;
 		text-decoration: underline;
-		padding-right: 20px;
+		margin-right: 20px;
 		}
 		.w-contents-link:hover {
 			text-decoration: none;
 			}
+		.w-contents-link.type_title {
+			margin-right: 50px;
+			}
+
 .w-toggler {
 	float: right;
 	}
