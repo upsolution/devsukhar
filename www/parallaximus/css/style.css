@@ -108,11 +108,11 @@ ol {
 
 .sales-page .w-parallaximus {
 	height: 400px;
-	width: 800px;
-	/*max-width: 1400px;*/
+	width: 100%;
+	max-width: 1400px;
 	/*min-width: 800px;*/
 	margin: 0 auto;
-	overflow: visible;
+	overflow: hidden;
 	}
 	.sales-page .w-parallaximus-layer.index_1 {
 		height: 450px;
