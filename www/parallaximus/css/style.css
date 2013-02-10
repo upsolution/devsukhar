@@ -316,3 +316,27 @@ ol {
 		.nav-link.active span {
 			display: none !important;
 			}
+
+.l-cols {
+	margin-left: -20px;
+	*zoom: 1;
+	}
+	.l-cols:before,
+	.l-cols:after {
+		display: table;
+		content: "";
+		}
+	.l-cols:after {
+		clear: both;
+		}
+	.l-col {
+		float: left;
+		margin-left: 20px;
+		}
+		.l-col.at_right {
+			float: right;
+			}
+			.l-col.at_right > h2,
+			.l-col.at_right > p {
+				text-align: right;
+				}
