@@ -22,6 +22,7 @@ body {
 a {
 	color: #2f6b99;
 	border-bottom: 1px solid #5d8eb4;
+	text-decoration: none;
 	-webkit-transition: all 0.2s ease;
 	   -moz-transition: all 0.2s ease;
 		-ms-transition: all 0.2s ease;
@@ -224,6 +225,9 @@ ol {
 		border: none;
 		color: #333 !important;
 		*display: inline;
+		}
+	.l-order-link {
+		text-decoration: underline;
 		}
 		.l-order-link:hover {
 			text-decoration: none;

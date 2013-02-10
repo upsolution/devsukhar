@@ -120,3 +120,14 @@ body {
 .i-version.version_mootools {
 	display: none;
 	}
+
+
+.i-tab {
+	position: relative;
+	left: -10px;
+	top: -50px;
+	display: block;
+	width: 1px;
+	height: 1px;
+	content: "";
+	}
