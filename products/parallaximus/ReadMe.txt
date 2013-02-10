@@ -1,5 +1,5 @@
 Documentation:
-  Link: http://dev.sukhar.info/parallaximus/docs/
+  http://dev.sukhar.info/parallaximus/docs/
 
 Parallaximus CSS and JS files
   Folder: /parallaximus
@@ -9,10 +9,11 @@ Parallaximus unminified JS files
 
 Demos:
   Folder: /demos
-  Folder:
-  (folders /templates/assets and /templates/img contain assets related to examples)
+
+PDS layouts of demos:
+  Folder: /psd
 
 
 
-Thank you for using RoyalSlider plugin!
--Dmitry Semenov
+Thank you for using Parallaximus!
+-Ruslan Sukhar
