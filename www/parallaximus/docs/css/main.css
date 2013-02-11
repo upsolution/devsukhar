@@ -10,7 +10,13 @@ body {
 .g-html h2,
 .g-html h3,
 .g-html table  {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
+	}
+.g-html h2 {
+	margin-top: 50px;
+	}
+.g-html h3 {
+	margin-top: 30px;
 	}
 .g-html p,
 .g-html code,

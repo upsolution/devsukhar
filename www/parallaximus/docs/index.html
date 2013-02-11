@@ -54,6 +54,7 @@
 
 					<p class="note">Basic parallaximus styles should be included just before your page styles.</p>
 
+					<div class="i-version version_jquery">
 <pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
 &lt;!-- (should be inserted before your page styles) --&gt;
 &lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;
@@ -65,8 +66,22 @@
 &lt;script type="text/javascript" src="parallaximus/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
 
 &lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
-&lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;
-</code></pre>
+&lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;</code></pre>
+					</div>
+					<div class="i-version version_mootools">
+<pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
+&lt;!-- (should be inserted before your page styles) --&gt;
+&lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;
+
+&lt;!-- (!) Your page styles are here. --&gt;
+
+&lt;!-- Parallaximus requires MooTools 1.4+ --&gt;
+&lt;!-- Note: if you already have MooTools at this moment, you shouldn't include it once more. --&gt;
+&lt;script type="text/javascript" src="parallaximus/mootools-core-1.4.5-full-nocompat-yc.js"&gt;&lt;/script&gt;
+
+&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
+&lt;script type="text/javascript" src="parallaximus/mootools.parallaximus.min.js"&gt;&lt;/script&gt;</code></pre>
+					</div>
 
 					<p>2. Choose the most suitable demo (<a href="../" target="_blank">from demos list</a>) for your case and:</p>
 					<ul>
@@ -86,7 +101,7 @@
 &lt;/div&gt;</code></pre>
 
 						</li>
-						<li>enter correct image sources, widths and heights;
+						<li>enter correct sources, widths and heights of images;
 						<p class="note">The first layer is the farthest from the viewpoint. The last one is the nearest.</p>
 						</li>
 						<li>copy demo styles (from archive <span class="code">demos/{DemoName}/index.html</span> file) to your page styles CSS file:
@@ -142,7 +157,7 @@ window.addEvent('domready', function(){
 &lt;/script&gt;</code></pre>
 					</div>
 
-					<p>4. Now have a look at your widget. Probably it needs some finishing touch (in your page styles CSS file):</p>
+					<p>4. Now have a look at your widget. It probably needs some finishing touch (in your page styles CSS file):</p>
 
 					<ul>
 						<li>set the correct width and height for your widget:
@@ -151,7 +166,7 @@ window.addEvent('domready', function(){
 	height: 400px;
 	}</code></pre>
 						</li>
-						<li>do the same for each widget layer:
+						<li>do the same for each Parallaximus layer:
 						<p class="note">Class name <strong>index_1</strong> is connected with the farthest layer
 							(HTML marked with the same class name). Next layer will be marked with <strong>index_2</strong>.
 							It is not nessessary but used for easier style definitions.</p>
@@ -173,127 +188,37 @@ window.addEvent('domready', function(){
 						</li>
 					</ul>
 
-					<h2><span class="i-tab" id="advanced"></span>Advanced usage</h2>
+					<p><strong>Your widget is ready!</strong></p>
 
-					<p>1. Upload <span class="code">parallaximus</span> folder to your server.</p>
+					<h2><span class="i-tab" id="advanced"></span>Advanced</h2>
 
-					<p>2. Include basic Parallaximus styles <strong>before your main page styles</strong>:</p>
+					<h3><span class="i-tab" id="responsive"></span>Responsive behaviour</h3>
 
-<pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
-&lt;!-- (should be inserted before your page styles) --&gt;
-&lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;</code></pre>
-
-					<div class="i-version version_jquery">
-						<p>3. For <strong>jQuery version</strong> (<a href="javascript:docVersion.show('mootools')">click for MooTools</a>) include this scripts:<br></p>
-
-<pre><code>&lt;!-- Parallaximus requires JQuery 1.7+ --&gt;
-&lt;!-- Note: if you already have jQuery at this moment, you shouldn't include it once more. --&gt;
-&lt;script type="text/javascript" src="parallaximus/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
-
-&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
-&lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;</code></pre>
-					</div>
-
-					<div class="i-version version_mootools">
-						<p>3. For <strong>MooTools version</strong> (<a href="javascript:docVersion.show('jquery')">click for jQuery</a>) include this scripts:</p>
-
-<pre><code>&lt;!-- Parallaximus requires MooTools 1.4+ --&gt;
-&lt;!-- Note: if you already have MooTools at this moment, you shouldn't include it once more. --&gt;
-&lt;script type="text/javascript" src="parallaximus/mootools-core-1.4.5-full-nocompat-yc.js"&gt;&lt;/script&gt;
-
-&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
-&lt;script type="text/javascript" src="parallaximus/mootools.parallaximus.min.js"&gt;&lt;/script&gt;</code></pre>
-					</div>
-
-					<p>4. Add the parallaximus HTML code to the <span class="code">body</span> section.
-						The easiest way to do it is to copy one of attached demos html.<br>
-						Layers should be placed as the child elements of main container, all original class names should be preserved.<br>
-						Each layer can contain one or several images.<br>
-					Note: you need to enter images' widths and heights.</p>
-
-<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;
-	&lt;div class="w-parallaximus-layer index_1"&gt;
-		&lt;img src="image.png" width="165" height="219" alt=""&gt;
-	&lt;/div&gt;
-	&lt;div class="w-parallaximus-layer index_2"&gt;
-		&lt;img src="image.png" width="130" height="42" alt=""&gt;
-	&lt;/div&gt;
-	&lt;div class="w-parallaximus-layer index_3"&gt;
-		&lt;img src="image.png" width="182" height="28" alt=""&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-					<div class="i-version version_jquery">
-						<p>5. For <strong>jQuery version</strong> (<a href="javascript:docVersion.show('mootools')">click for MooTools</a>)
-							initialize the widget (usually at the end of the <span class="code">body</span> section).<br>
-							For settings list, check <a href="#options">options</a> section</p>
-
-<pre><code>&lt;script&gt;
-jQuery(document).ready(function($){
-	$('.w-parallaximus').parallaximus({
-		// options are located here
-		// for example: set return-effect duration to 5 seconds
-		duration: 5000
-	});
-});
-&lt;/script&gt;</code></pre>
-					</div>
-
-					<div class="i-version version_mootools">
-						<p>5. For <strong>MooTools version</strong> (<a href="javascript:docVersion.show('jquery')">click for jQuery</a>) initialize the widget
-							(usually at the end of the <span class="code">body</span> section).<br>
-							For settings list, check <a href="#options">options</a> section</p>
-
-<pre><code>&lt;script&gt;
-window.addEvent('domready', function(){
-	new Parallaximus(document.getElement('.w-parallaximus'), {
-		// options are located here
-		// for example: set return-effect duration to 5 seconds
-		duration: 5000
-	});
-});
-&lt;/script&gt;</code></pre>
-					</div>
-
-					<p>6. Apply sizes to widget and layers using CSS.</p>
-
-					<p>To widget:</p>
-
-<pre><code>.w-parallaximus {
-	width: 240px;
-	height: 400px;
-	/* If you widget has background place it here */
-	background: url(background.jpg);
-	}</code></pre>
-
-					<p>To each layer:</p>
-
-					<p>(Note that layers usually should be bigger than the widget itself. How to choose layer size?
-						The main rule: the closer the layer to us, the bigger it should be).</p>
-
-<pre><code>.w-parallaximus-layer.index_1 {
-	width: 400px;
-	height: 500px;
-	}
-	.w-parallaximus-layer.index_1 > img {
-		left: 20px;
-		top: 30px;
-		}</code></pre>
-
-					<p><span class="i-tab" id="responsive"></span>7. <strong>Will your widget be responsive?</strong> Choose the way you widget resizes by adding or removing container classes <span class="code">width_fixed</span> and
+					<p>Choose the way you widget resizes by adding or removing container classes <span class="code">width_fixed</span> and
 						<span class="code">height_fixed</span></p>
 
 					<p>Fixed width and height (<a href="../demos/TravelAgency/" target="_blank">example</a>):</p>
 
-<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;</code></pre>
+					<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;</code></pre>
 
 					<p>Responsive width with fixed height (<a href="../demos/BestOffer/" target="_blank">example</a>):</p>
 
-<pre><code>&lt;div class="w-parallaximus height_fixed"&gt;</code></pre>
+					<pre><code>&lt;div class="w-parallaximus height_fixed"&gt;</code></pre>
 
 					<p>Responsive width and height (<a href="../demos/Testimonials/" target="_blank">example</a>):</p>
 
-<pre><code>&lt;div class="w-parallaximus"&gt;</code></pre>
+					<pre><code>&lt;div class="w-parallaximus"&gt;</code></pre>
+
+					<h3>Auto-init</h3>
+
+					<p>If you don't want to manually initialize widget, you can use auto initialization. Simply add
+						<span class="code">i-autoinit</span> class to widget container:</p>
+
+<pre><code>&lt;div class="w-parallaximus i-autoinit"&gt;</code></pre>
+
+					<p>You can set widget options as shown below:</p>
+
+<pre><code>&lt;div class="w-parallaximus i-autoinit" onclick="return {duration: 5000 /* options */}"&gt;</code></pre>
 
 					<h2><span class="i-tab" id="options"></span>Options</h2>
 
