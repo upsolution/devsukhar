@@ -5,7 +5,7 @@
 	<title>Parallaximus documentation</title>
 
 	<link rel="stylesheet" type="text/css" href="../css/reset.css" media="all">
-	<link rel="stylesheet" type="text/css" href="js/highlight.js/styles/github.css" media="all">
+	<link rel="stylesheet" type="text/css" href="js/highlight.js/styles/tomorrow-night.css" media="all">
 	<link rel="stylesheet" type="text/css" href="css/main.css" media="all">
 
 	<script type="text/javascript" src="js/highlight.js/highlight.pack.js"></script>
@@ -22,7 +22,8 @@
 
 		<div class="w-contents">
 			<a class="w-contents-link type_title" href="../">← Back</a>
-			<a class="w-contents-link" href="#basics">Basic usage</a>
+			<a class="w-contents-link" href="#simple">Simple usage</a>
+			<a class="w-contents-link" href="#advanced">Advanced</a>
 			<a class="w-contents-link" href="#options">Options</a>
 			<a class="w-contents-link" href="#api">API</a>
 		</div>
@@ -46,14 +47,140 @@
 
 					<h1>Parallaximus Documentation</h1>
 
-					<h2><span class="i-tab" id="basics"></span>Basic usage</h2>
+					<h2><span class="i-tab" id="simple"></span>Simple usage</h2>
+
+					<p>1. Upload <span class="code">parallaximus</span> folder to your server and include the required
+						files in your page (usually in the <span class="code">head</span> section):</p>
+
+					<p class="note">Basic parallaximus styles should be included just before your page styles.</p>
+
+<pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
+&lt;!-- (should be inserted before your page styles) --&gt;
+&lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;
+
+&lt;!-- (!) Your page styles are here. --&gt;
+
+&lt;!-- Parallaximus requires JQuery 1.7+ --&gt;
+&lt;!-- Note: if you already have jQuery at this moment, you shouldn't include it once more. --&gt;
+&lt;script type="text/javascript" src="parallaximus/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Parallaximus script (should be placed after Parallaximus styles definition) --&gt;
+&lt;script type="text/javascript" src="parallaximus/jquery.parallaximus.min.js">&lt;/script&gt;
+</code></pre>
+
+					<p>2. Choose the most suitable demo (<a href="../" target="_blank">from demos list</a>) for your case and:</p>
+					<ul>
+						<li>open its PSD (archive: <span class="code">psd/{DemoName}.psd</span>) to create your own widget appearance;</li>
+						<li>export layers as trimmed images (as done in demo example) and upload them to your server image location;</li>
+						<li>copy demo HTML (from archive: <span class="code">demos/{DemoName}/index.html</span> file) to your
+							page <span class="code">body</span> section (to the place where your widget should be located):
+							<p class="note">Below is an approximate example of HTML code, specific demo HTML will differ a bit.</p>
+
+<pre><code>&lt;div class="w-parallaximus width_fixed height_fixed"&gt;
+	&lt;div class="w-parallaximus-layer index_1"&gt;
+		&lt;img src="image.png" width="165" height="219" alt=""&gt;
+	&lt;/div&gt;
+	&lt;div class="w-parallaximus-layer index_2"&gt;
+		&lt;img src="image.png" width="130" height="42" alt=""&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+						</li>
+						<li>enter correct image sources, widths and heights;
+						<p class="note">The first layer is the farthest from the viewpoint. The last one is the nearest.</p>
+						</li>
+						<li>copy demo styles (from archive <span class="code">demos/{DemoName}/index.html</span> file) to your page styles CSS file:
+							<p class="note">Below is an approximate example of CSS code, specific demo CSS will differ a bit.</p>
+<pre><code>.w-parallaximus {
+	width: 240px;
+	height: 400px;
+	/* If you widget has background place it here */
+	background: url(background.jpg);
+	}
+	.w-parallaximus-layer.index_1 {
+		width: 400px;
+		height: 500px;
+		}
+		.w-parallaximus-layer.index_1 > img {
+			left: 20px;
+			top: 30px;
+			}
+	.w-parallaximus-layer.index_2 {
+		width: 500px;
+		height: 600px;
+		}
+		.w-parallaximus-layer.index_2 > img {
+			left: 40px;
+			top: 50px;
+			}</code></pre>
+						</li>
+					</ul>
+
+					<p>3. Initialize widget (usually at the end of the <span class="code">body</span> section). For settings list, check <a href="#options">options</a> section</p>
+
+					<div class="i-version version_jquery">
+<pre><code>&lt;script&gt;
+jQuery(document).ready(function($){
+	$('.w-parallaximus').parallaximus({
+		// options are located here
+		// for example: set return-effect duration to 5 seconds
+		duration: 5000
+	});
+});
+&lt;/script&gt;</code></pre>
+					</div>
+
+					<div class="i-version version_mootools">
+<pre><code>&lt;script&gt;
+window.addEvent('domready', function(){
+	new Parallaximus(document.getElement('.w-parallaximus'), {
+		// options are located here
+		// for example: set return-effect duration to 5 seconds
+		duration: 5000
+	});
+});
+&lt;/script&gt;</code></pre>
+					</div>
+
+					<p>4. Now have a look at your widget. Probably it needs some finishing touch (in your page styles CSS file):</p>
+
+					<ul>
+						<li>set the correct width and height for your widget:
+<pre><code>.w-parallaximus {
+	width: 240px;
+	height: 400px;
+	}</code></pre>
+						</li>
+						<li>do the same for each widget layer:
+						<p class="note">Class name <strong>index_1</strong> is connected with the farthest layer
+							(HTML marked with the same class name). Next layer will be marked with <strong>index_2</strong>.
+							It is not nessessary but used for easier style definitions.</p>
+						<p class="note">Layers usually should be bigger than the widget itself. How to choose layer width and height?
+							The main rule: the closer the layer to viewpoint, the bigger it should be.</p>
+<pre><code>.w-parallaximus-layer.index_1 {
+	width: 240px;
+	height: 400px;
+	}</code></pre>
+						</li>
+						<li>put layer images into their correct positions:
+							<p class="note">It you didn't change layer sizes you can use layer masks in demo PSD file for
+							easier measurement.</p>
+
+<pre><code>.w-parallaximus-layer.index_1 > img {
+	left: 20px;
+	top: 30px;
+	}</code></pre>
+						</li>
+					</ul>
+
+					<h2><span class="i-tab" id="advanced"></span>Advanced usage</h2>
 
 					<p>1. Upload <span class="code">parallaximus</span> folder to your server.</p>
 
 					<p>2. Include basic Parallaximus styles <strong>before your main page styles</strong>:</p>
 
 <pre><code>&lt;!-- Basic Parallaximus styles  --&gt;
-&lt;!-- (should be inserted before specific widget styles to be overloaded) --&gt;
+&lt;!-- (should be inserted before your page styles) --&gt;
 &lt;link rel="stylesheet" type="text/css" href="parallaximus/parallaximus.css" media="all"&gt;</code></pre>
 
 					<div class="i-version version_jquery">
@@ -256,6 +383,8 @@ parallaximus.set([.1, .1]);
 // Update position after manual container resize
 parallaximus.handleResize();</code></pre>
 
+
+					<p><br><br>© 2013 Ruslan Sukhar. <a href="http://www.fatcow.com/free-icons" target="_blank">FatCow icons</a> are used at this page.</p>
 				</div>
 
 			</div>

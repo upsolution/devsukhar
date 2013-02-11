@@ -15,9 +15,17 @@ body {
 .g-html p,
 .g-html code,
 .g-html ol,
-.g-html ul{
+.g-html ul {
 	margin-bottom: 15px;
 	}
+.g-html ul {
+	list-style: disc;
+	margin-left: 60px;
+	}
+	.g-html ol > li,
+	.g-html ul > li {
+		margin-bottom: 5px;
+		}
 .g-html a {
 	color: #00008b;
 	text-decoration: underline;
@@ -121,6 +129,21 @@ body {
 	display: none;
 	}
 
+
+p.note { color:#000;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #dfdfd5;
+	background:url(../img/note.gif) no-repeat 20px 22px #f5f5ea;
+	padding:20px 20px 20px 200px;
+	width:auto;
+	overflow-x:auto; }
+p.imp { color:#000;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #e2d4d4;
+	background:url(../img/imp2.gif) no-repeat 20px 22px #f7ebeb;
+	padding:20px 20px 20px 200px;
+	width:auto;
+	overflow-x:auto; }
 
 .i-tab {
 	position: relative;
