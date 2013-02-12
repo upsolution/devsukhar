@@ -50,27 +50,31 @@
 		if ( ! ('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
 			this.container
 				.mousemove(function(e){
-					var offset = that.container.offset(),
-						now = Date.now();
 					// Reducing processor load for too frequent event calls
 					if (that._lastFrame + that._frameRate > now) return;
-					that.container.stop(true, true);
-					that.set([(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y]);
+					var offset = that.container.offset(),
+						now = Date.now(),
+						coord = [(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y];
+					// Handle hover animation
+					if (that._hoverAnimation){
+						that._hoverTo = coord;
+						return;
+					}
+					that.set(coord);
 					that._lastFrame = now;
 				})
+				.mouseenter(function(e){
+					var offset = that.container.offset(),
+						coord = [(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y];
+					that.cancel();
+					that._hoverAnimation = true;
+					that._hoverFrom = that.now.slice();
+					that._hoverTo = coord;
+					that.start(that._hoverTo);
+				})
 				.mouseleave(function(e){
-					var from = $.extend({}, that.now),
-						to = that.options.basePoint;
-					that.container.css('delta', 0).animate({
-						delta: 1
-					}, {
-						duration: that.options.duration,
-						easing: that.options.transition,
-						step: function(delta){
-							that.set([(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]]);
-						},
-						queue: false
-					});
+					that.cancel();
+					that.start(that.options.basePoint);
 				});
 		}
 		// Device orientation events for touch devices
@@ -180,7 +184,6 @@
 					coord = [(45 - gamma) / 90, (45 - beta) / 90];
 					break;
 			}
-			this.container.stop(true, true);
 			this.set(coord);
 		},
 
@@ -256,13 +259,13 @@
 					y: this.curCntSz.y - this.curLayerSz[index].y - 2 * this.layerMin[index].y
 				};
 			}
-		}
+		},
 
 		/**
 		 * Render parallaximus frame.
 		 * @param {Array} coord [x, y] Both x and y are ranged in [0, 1]
 		 */
-	  , set: function(coord){
+		set: function(coord){
 			for (var index = 0, len = this.layers.length; index < len; index++){
 				var layer = $(this.layers[index]);
 				layer
@@ -277,6 +280,65 @@
 				}
 			}
 			this.now = coord.slice();
+			return this;
+		},
+
+		/**
+		 * Step value computing function, read more at http://mootools.net/docs/core/Fx/Fx
+		 * @param {Array} from
+		 * @param {Array} to
+		 * @param {Number} delta
+		 * @return {Array}
+		 */
+		compute: function(from, to, delta)
+		{
+			if (this._hoverAnimation){
+				return [
+					(this._hoverTo[0] - this._hoverFrom[0]) * delta + this._hoverFrom[0],
+					(this._hoverTo[1] - this._hoverFrom[1]) * delta + this._hoverFrom[1]
+				];
+			}
+			return [
+				(to[0] - from[0]) * delta + from[0],
+				(to[1] - from[1]) * delta + from[1]
+			];
+		},
+
+		/**
+		 * Start animation to certain point
+		 * @param {Array} to
+		 * @return {Parallaximus}
+		 */
+		start: function(to)
+		{
+			var from = this.now.slice(),
+				that = this;
+			this.container
+				.css('delta', 0)
+				.animate({
+					delta: 1
+				}, {
+					duration: this.options.duration,
+					easing: this.options.transition,
+					complete: function(){
+						that._hoverAnimation = false;
+					},
+					step: function(delta){
+						that.set(that.compute(from, to, delta));
+					},
+					queue: false
+				});
+			return this;
+		},
+
+		/**
+		 * Cancel animation
+		 * @return {Parallaximus}
+		 */
+		cancel: function()
+		{
+			this._hoverAnimation = false;
+			this.container.stop(true, false);
 			return this;
 		}
 

@@ -103,17 +103,37 @@ var Parallaximus = new Class({
 		if ( ! ('ontouchstart' in window) || ! ('DeviceOrientationEvent' in window)){
 			this.container.addEvents({
 				mousemove: function(e){
-					var offset = this.container.getPosition(),
-						now = Date.now();
 					// Reducing processor load for too frequent event calls
-					if (this._lastFrame + this._frameRate > now) return;
-					this.stop().set([(e.page.x - offset.x) / this.curCntSz.x, (e.page.y - offset.y) / this.curCntSz.y]);
+					if (this._lastFrame + this._frameRate > Date.now) return;
+					var offset = this.container.getPosition(),
+						now = Date.now(),
+						coord = [(e.page.x - offset.x) / this.curCntSz.x, (e.page.y - offset.y) / this.curCntSz.y];
+					// Handle hover animation
+					if (this._hoverAnimation){
+						this._hoverTo = coord;
+						return;
+					}
+					this.set(coord);
 					this._lastFrame = now;
 				}.bind(this),
-				mouseout: function(e){
-					this.start(this.options.basePoint.clone());
+				mouseenter: function(e){
+					var offset = this.container.getPosition(),
+						coord = [(e.page.x - offset.x) / this.curCntSz.x, (e.page.y - offset.y) / this.curCntSz.y];
+					this.cancel();
+					this._hoverAnimation = true;
+					this._hoverFrom = this.now.clone();
+					this._hoverTo = coord;
+					this.start(this._hoverTo);
+				}.bind(this),
+				mouseleave: function(e){
+					this
+						.cancel()
+						.start(this.options.basePoint.clone());
 				}.bind(this)
 			});
+			this
+//				.addEvent('cancel', function(){ this._hoverAnimation = false; }.bind(this))
+				.addEvent('complete', function(){ this._hoverAnimation = false; }.bind(this));
 		}
 		// Device orientation events for touch devices
 		if ('ontouchstart' in window && 'DeviceOrientationEvent' in window){
@@ -213,7 +233,7 @@ var Parallaximus = new Class({
 				coord = [(45 - gamma) / 90, (45 - beta) / 90];
 				break;
 		}
-		this.stop().set(coord);
+		this.set(coord);
 	},
 
 	/**
@@ -320,7 +340,16 @@ var Parallaximus = new Class({
 	 */
 	compute: function(from, to, delta)
 	{
-		return [(to[0] - from[0]) * delta + from[0], (to[1] - from[1]) * delta + from[1]];
+		if (this._hoverAnimation){
+			return [
+				(this._hoverTo[0] - this._hoverFrom[0]) * delta + this._hoverFrom[0],
+				(this._hoverTo[1] - this._hoverFrom[1]) * delta + this._hoverFrom[1]
+			];
+		}
+		return [
+			(to[0] - from[0]) * delta + from[0],
+			(to[1] - from[1]) * delta + from[1]
+		];
 	},
 
 	/**
@@ -332,6 +361,16 @@ var Parallaximus = new Class({
 	{
 		this.parent(this.now, to);
 		return this;
+	},
+
+	/**
+	 * Cancel animation
+	 * @return {Parallaximus}
+	 */
+	cancel: function()
+	{
+		this._hoverAnimation = false;
+		return this.parent();
 	}
 
 });
