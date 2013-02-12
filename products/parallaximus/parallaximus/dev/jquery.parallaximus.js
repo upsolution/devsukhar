@@ -51,7 +51,7 @@
 			this.container
 				.mousemove(function(e){
 					// Reducing processor load for too frequent event calls
-					if (that._lastFrame + that._frameRate > now) return;
+					if (that._lastFrame + that._frameRate > Date.now()) return;
 					var offset = that.container.offset(),
 						now = Date.now(),
 						coord = [(e.pageX - offset.left) / that.curCntSz.x, (e.pageY - offset.top) / that.curCntSz.y];
@@ -377,7 +377,7 @@
 		/**
 		 * @var {Number} Frame per second limit for rendering
 		 */
-		fps: 30,
+		fps: 60,
 
 		/**
 		 * @var {Boolean} Enable 3d transformations

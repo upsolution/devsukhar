@@ -20,7 +20,7 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Number} Frame per second limit for rendering
 		 */
-		fps: 30,
+		fps: 60,
 
 		/**
 		 * @var {Boolean} Enable 3d transformations
@@ -104,7 +104,7 @@ var Parallaximus = new Class({
 			this.container.addEvents({
 				mousemove: function(e){
 					// Reducing processor load for too frequent event calls
-					if (this._lastFrame + this._frameRate > Date.now) return;
+					if (this._lastFrame + this._frameRate > Date.now()) return;
 					var offset = this.container.getPosition(),
 						now = Date.now(),
 						coord = [(e.page.x - offset.x) / this.curCntSz.x, (e.page.y - offset.y) / this.curCntSz.y];

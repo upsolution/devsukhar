@@ -253,7 +253,7 @@ window.addEvent('domready', function(){
 						</tr>
 						<tr>
 							<td><span class="code">fps</span></td>
-							<td>30</td>
+							<td>60</td>
 							<td>Frame per second limit for rendering (to reduce processor load for too frequent renders)</td>
 						</tr>
 						<tr>
@@ -302,10 +302,18 @@ window.addEvent('domready', function(){
 					</div>
 
 					<p>Public methods:</p>
-<pre><code>// Move position to certain point:
+<pre><code>// Quickly set position to certain point:
+// [x, y] - both coords are limited by range from 0 to 1
 parallaximus.set([.1, .1]);
 
-// Update position after manual container resize
+// Animate position to certain point:
+// [x, y] - both coords are limited by range from 0 to 1
+parallaximus.start([.1, .1]);
+
+// Cancel animation
+parallaximus.cancel();
+
+// Update widget after manual container resize
 parallaximus.handleResize();</code></pre>
 
 
