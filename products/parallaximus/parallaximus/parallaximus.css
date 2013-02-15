@@ -13,3 +13,8 @@
 		.w-parallaximus-layer > img {
 			position: absolute;
 			}
+		.w-parallaximus-layer > p {
+			position: absolute;
+			padding: 0;
+			margin: 0;
+			}

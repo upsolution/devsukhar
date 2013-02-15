@@ -60,7 +60,15 @@ var Parallaximus = new Class({
 		/**
 		 * @var {Number} Resize delay to reduce resize event calls
 		 */
-		resizeDelay: 50
+		resizeDelay: 50,
+
+		/**
+		 * @var {Object} Elements and their props to be dynamically resized
+		 */
+		resizeProps: {
+			img: ['width', 'height', 'left', 'top'],
+			p: ['width', 'height', 'left', 'top', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'font-size', 'line-height']
+		}
 	},
 
 	/**

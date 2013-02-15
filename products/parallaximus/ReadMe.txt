@@ -5,7 +5,7 @@ Parallaximus CSS and JS files
   Folder: /parallaximus
 
 Parallaximus unminified JS files
-  Folder: /parallaximus/dev
+  Folder: /dev
 
 Demos:
   Folder: /demos

@@ -24,25 +24,40 @@
 				width: 1480px;
 				height: 740px;
 				}
-				.w-parallaximus-layer.index_1 > img {
+				.w-parallaximus-layer.index_1 > p {
 					left: 160px;
 					top: 330px;
+					height: 60px;
+					padding: 0 25px;
+					background-color: #ff9900;
+					font: 36px/60px "Trebuchet MS", Helvetica, Jamrul, sans-serif;
+					color: #fff;
 					}
 			.w-parallaximus-layer.index_2 {
 				width: 1560px;
 				height: 780px;
 				}
-				.w-parallaximus-layer.index_2 > img {
+				.w-parallaximus-layer.index_2 > p {
 					left: 200px;
 					top: 480px;
+					height: 60px;
+					padding: 0 25px;
+					background-color: #67a0c9;
+					font: 36px/60px "Trebuchet MS", Helvetica, Jamrul, sans-serif;
+					color: #fff;
 					}
 			.w-parallaximus-layer.index_3 {
 				width: 1640px;
 				height: 820px;
 				}
-				.w-parallaximus-layer.index_3 > img {
+				.w-parallaximus-layer.index_3 > p {
 					left: 240px;
 					top: 435px;
+					height: 60px;
+					padding: 0 25px;
+					background-color: #82b53e;
+					font: 36px/60px "Trebuchet MS", Helvetica, Jamrul, sans-serif;
+					color: #fff;
 					}
 			.w-parallaximus-layer.index_4 {
 				width: 1720px;
@@ -60,25 +75,32 @@
 				width: 1800px;
 				height: 900px;
 				}
-				.w-parallaximus-layer.index_5 > img {
+				.w-parallaximus-layer.index_5 > p {
 					left: 321px;
 					top: 287px;
+					font: bold 72px "Trebuchet MS", Helvetica, Jamrul, sans-serif;
+					color: #333333;
 					}
 	</style>
 
 	<!-- Parallaximus reqiures JQuery 1.7+ -->
-	<script type="text/javascript" src="../../parallaximus/jquery-1.9.1.min.js"></script>
+	<!--<script type="text/javascript" src="../../parallaximus/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="../../parallaximus/mootools-core-1.4.5-full-nocompat-yc.js"></script>
 
 	<!-- Main Parallaximus script (should be placed after Parallaximus styles definition) -->
-	<script type="text/javascript" src="../../parallaximus/jquery.parallaximus.min.js"></script>
+	<!--<script type="text/javascript" src="../../parallaximus/jquery.parallaximus.min.js"></script>-->
+	<script type="text/javascript" src="../../dev/mootools.parallaximus.js"></script>
 
 	<!-- Initialize Parallaximus -->
 	<script type="text/javascript">
-		jQuery(document).ready(function($){
-			$('.w-parallaximus').parallaximus({
-				perspective: 200,
-				duration: 5000
-			});
+//		jQuery(document).ready(function($){
+//			$('.w-parallaximus').parallaximus({
+//				perspective: 200,
+//				duration: 5000
+//			});
+//		});
+		window.addEvent('domready', function(){
+			new Parallaximus(document.getElement('.w-parallaximus'), {perspective: 200});
 		});
 	</script>
 
@@ -89,20 +111,20 @@
 
 		<div class="w-parallaximus">
 			<div class="w-parallaximus-layer index_1">
-				<img src="img/1-slogan1.png" width="359" height="60" alt="">
-			</div>
-			<div class="w-parallaximus-layer index_2">
-				<img src="img/2-slogan3.png" width="336" height="60" alt="">
+				<p>You can change text,</p>
 			</div>
 			<div class="w-parallaximus-layer index_3">
-				<img src="img/3-slogan2.png" width="422" height="60" alt="">
+				<p>pictures and also modify</p>
+			</div>
+			<div class="w-parallaximus-layer index_2">
+				<p>the parallax effect</p>
 			</div>
 			<div class="w-parallaximus-layer index_4">
 				<img class="index_41" src="img/4-image1.png" width="617" height="408" alt="">
 				<img class="index_42" src="img/4-image2.jpg" width="461" height="321" alt="">
 			</div>
 			<div class="w-parallaximus-layer index_5">
-				<img src="img/5-title.png" width="509" height="54" alt="">
+				<p>Best offer ever!</p>
 			</div>
 		</div>
 
